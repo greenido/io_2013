@@ -1,0 +1,320 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>GPhoto I/O Demo 2013</title>
+    <meta name="description" content="Gphoto IO 2013 Demo">
+    <meta name="author" content="Ido Green">
+
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/bootstrap.css">   
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+
+    <meta itemprop="name" content="Gphoto I/O Demo 2013">
+    <meta itemprop="image" content="https://developers.google.com/images/developers-logo.png">
+
+  </head>
+<body> 
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">GPhoto I/O Demo 2013</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+
+            <li><a href="#apis">APIs</a></li>
+            <li><a href="index1.html" target="_blank">Ajax</a></li>
+            <li><a href="index2gapi.html" target="_blank">Gapi</a></li>
+            <li><a href="tests/unit-tests.html" target="_blank">Offline</a></li>
+            <li><a href="tests/oauth-tests.html" target="_blank">OAuth2.0</a></li>
+
+            <li><input id="searchGphoto" data-provide="typeahead" 
+                       type="search" placeholder="Search..."
+                       data-items="4" 
+                       data-source='["sun", "snow", "beach", "bike", "run", "ride", "walk"]'>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Resources <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://developers.google.com/appengine/" target="_blank">Google App Engine</a></li>
+                <li><a href="https://developers.google.com/apis-explorer/" target="_blank">Google API explorer</a></li>
+                <li class="divider"></li>
+                <li><a href="http://angularjs.org/" target="_blank">AngularJS</a></li>
+                <li><a href="http://documentcloud.github.com/underscore/" target="_blank">Underscore.js</a></li>
+                <li>
+                  <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+                </li>
+                <li class="divider"></li>
+                <li class="nav-header">Code & Docs</li>
+                <li><a href="https://github.com/greenido" target="_blank">GitHub Repository</a></li>
+                <li><a href="http://ido-green.appspot.com" target="_blank">Docs and explanations</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div> <!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Main unit -->
+    <div class="hero-unit">
+      <div class="row-fluid">
+        <div class="span11">
+
+          <div class="row-fluid">
+            <div class="span5">
+              <div class="genId">
+                <img src="img/coffee-48.png" alt='Gphoto coffee' id='imgTesT'/>
+                GphotoId
+                <input name="gGphotoId" id="gGphotoId" type="text" required=""/>
+              </div>
+
+              <ul class="nav nav-tabs" id="mainTabs">
+                <li class="active"><a href="#listActions" data-toggle="tab">Lists</a></li>
+                <li><a href="#crudActions" data-toggle="tab">Actions</a></li>
+                <li><a href="#commentsActions" data-toggle="tab">Comments</a></li>
+               <!-- <li><a href="#PagingActions" data-toggle="tab">Paging</a></li>  -->
+              </ul>
+
+              <div class="tab-content">
+                <div class="tab-pane fade in active" id="listActions">
+                  <li>
+                    <a class="btn btn-large GphotoListBut" data-maxGphotos="50">List Gphotos</a>
+                  </li>
+                  <li>
+                    List
+                    <select name="listOfDrinks" id="listNumGphoto">
+                      <option>1</option>
+                      <option>2</option>
+                      <option selected="selected">3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>10</option>
+                      <option>50</option>
+                      <option>100</option>
+                    </select>
+                    <a class="btn btn-large GphotoListBut">Gphotos</a>
+                  </li>
+                  <li>
+                    <a class="btn btn-large oneGphotoBut" data-oneGphoto="1">Get A Gphoto</a>
+                  </li>
+                </div>
+
+                <div class="tab-pane fade in" id="crudActions">
+                  <li>
+                    <a id="GphotoDetailsModalBut" class="btn btn-large">Update Gphoto</a>
+                  </li>
+                  <li>
+                    <a id="GphotoAddBut" class="btn btn-large">Add a Gphoto</a>
+                  </li>
+                   <li>
+                    <a id="GphotoDelBut" class="btn btn-large">Delete a Gphoto</a>
+                  </li>
+                </div>
+
+                <div class="tab-pane fade" id="commentsActions">
+                  <li>
+                    <a id="GphotoComments" class="btn btn-large">Get Comments</a>
+                  </li>
+                  <li>
+                    <a id="GphotoAddComment" class="btn btn-large">Add a Comment</a>  
+                    <button id="authorize-button" class="btn" 
+                            title="You must be logged in in order to add comments">Sign In</button> 
+                  </li>
+                </div>
+             
+              </div>
+            </div>
+
+            <!-- Results section -->
+            <div  class="span5">
+              <img src="https://developers.google.com/images/developers-logo.png"/>
+
+              <div class="alert fade in">
+                <button class="close" data-dismiss="alert">×</button>
+                <div id="alertContent"></div>
+              </div>
+              <div id="results" ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- update/add Gphoto(s) -->
+    <div class="modal hide" id="GphotoDetailsModal" >
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+        <h3>Gphoto Details</h3>
+      </div>
+      <div class="modal-body">
+
+        <form id='GphotoForm'>
+         <!-- <label for="GphotoId">Id</label>
+          <input name="GphotoId" id="GphotoId" type="text" disabled>
+          -->
+          <label for="GphotoName">Name</label>
+          <input name="GphotoName" id="GphotoName" type="text" required="">
+
+          <label for="GphotoScore">Score</label>
+          <input type="range" min="0" max="5" value="2" name="score"
+                 id="GphotoScore">
+          <input type="text" id="GphotoScoreText" disabled>                   
+
+          <label for="GphotoDesc">Description</label>
+          <input name="description" id="GphotoDesc" type="text">
+          
+          <label for="GphotoTags">Tags</label>
+          <input name="GphotoTags" id="GphotoTags" type="text">
+
+          <div id="imgdrop">Drop Image</div> 
+        </form>
+
+      </div>
+      <br/> 
+
+      <div class="modal-footer">
+        <a href="#" id="cancelGphoto" class="btn">Cancel</a>
+        <a href="#" id="saveGphoto" class="btn btn-primary">Save</a>
+      </div>
+    </div>
+
+    <!-- comments details -->
+    <div class="modal hide" id="GphotoCommentsModal" >
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+        <h3>Gphoto Comments</h3>
+      </div>
+      <div class="modal-body">
+        <form id='GphotoCommentsForm'>
+          <label for="GphotoId">Id</label>
+          <input name="GphotoId" id="GphotoCommentId" type="text" disabled>
+
+          <label for="GphotoUserName">Your Name</label>
+          <input name="name" id="GphotoUserName" type="text" required="">
+          <label for="GphotoComment">Comment</label>
+          <textarea id ="GphotoComment" placeholder="" cols="30" rows="5"></textarea>
+        </form>
+
+      </div>
+      <br/> 
+
+      <div class="modal-footer">
+        <a href="#" id="cancelCommentsGphoto" class="btn">Cancel</a>
+        <a href="#" id="saveCommentsGphoto" class="btn btn-primary">Save</a>
+      </div>
+    </div>
+
+    <!-- Meta data on our demo -->
+    <div class="row">
+      <div id="apis" class="span4">
+        <h2>APIs</h2>
+        <p>  
+        <ul class="nav nav-list">
+          <li>
+            <!-- TODO put the correct URI -->
+            <a href="https://developers.google.com/apis-explorer/?base=https://GPhoto-io2013.appspot.com/_ah/api#p/GPhoto/v1/">
+              <i class="icon-search"></i>
+              GPhoto API in Google APIs Explorer
+            </a>
+          </li>
+          <li>
+            <a href="https://code.google.com/p/google-api-javascript-client/wiki/GettingStarted">
+              <i class="icon-book"></i>
+              Google JavaScript Client Library</a>
+          </li>
+
+          <li>
+            <a href="http://docs.angularjs.org/guide/">
+              <i class="icon-pencil"></i>
+              AngularJS Docs</a>
+            </a>
+          </li>
+
+          <li><a href="http://brian.io/lawnchair/">
+              <i class="icon-leaf"></i>
+              LawnChair.js - offline library
+            </a>
+          </li>
+        </ul>
+
+        </p>
+        <g:plusone size="medium" annotation="inline"></g:plusone>
+      </div>
+
+      
+    <hr>
+    <footer>
+      <p><img src="https://developers.google.com/images/developers-logo.png" class="quimby_search_image">  &copy; Google 2013</p>
+
+    </footer>
+  </div> <!-- /container -->
+
+
+  <!-- "...calling all the angles..." -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+
+  <!-- some bootstrap goodies -->
+  <script src="js/libs/bootstrap/bootstrap.min.js"></script>
+  <script src="js/libs/bootstrap/modal.js"></script>
+  <script src="js/libs/bootstrap/transition.js"></script>
+  <script src="js/libs/bootstrap/tooltip.js"></script>
+  <script src="js/libs/bootstrap/alert.js"></script>
+  <script src="js/libs/bootstrap/typeahead.js"></script>
+  <script src="js/libs/bootstrap/tab.js"></script>
+
+  <!-- offline lib -->
+  <script src="js/libs/lawnchair-0.6.1.js"></script>
+
+  <!-- our little code -->
+  <script src="js/plugins.js"></script>
+  <script src="js/scripts-gapi.js"></script>
+
+  <!-- Google JS API GPhoto-io2013 -->
+
+<!-- TODO - change to the correct URI -->  
+  <script src="https://apis.google.com/js/client.js?onload=loadGapi">
+    { "client": {},
+      "googleapis.config": {
+        root: "https://GPhoto-io2013.appspot.com/_ah/api"
+      }
+    }
+  </script>
+
+  <!-- analytics -->
+  <script>
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-31753022-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.description.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+</body>
+</html>
