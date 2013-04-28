@@ -1,11 +1,11 @@
 /*
 This file contain HTML5 app that use Gapi js client lib with GAE REST API
-Source: https://code.google.com/u/bma@google.com/p/Gphotoiodemo/
+Source: https://code.google.com/u/bma@google.com/p/Picturesqueiodemo/
 Author: Ido Green
 Date: May 2013
 
 Key features:
-1. LawnChair - add config for app and save all Gphotos in indexedDB.
+1. LawnChair - add config for app and save all Picturesques in indexedDB.
 2. Geo - maps for the location.
 3. WebIntent - Sharing.
 
@@ -13,9 +13,8 @@ Key features:
 * http://code.google.com/p/google-api-javascript-client/
 
 Yep: simplicity is the ultimate sophistication
-https://developers.google.com/apis-explorer/?base=https://GPhoto-io2013.appspot.com/_ah/api#p/GPhoto/v1/
+https://developers.google.com/apis-explorer/?base=https://picturesque-app.appspot.com/_ah/api#p/picturesque/v1/
 
-http://developers.google.com/apis-explorer/?base=https://Gphotodemo1.googleplex.com/_ah/api#p/GPhoto/v1/
 
 */
 
@@ -26,27 +25,26 @@ http://developers.google.com/apis-explorer/?base=https://Gphotodemo1.googleplex.
 function loadGapi() {
   // Set the API key  AIzaSyAlZqy1ElhVN_Hbutey0xNabhZ14bEpcAo
   // Ido - AIzaSyD_mrsCOGa_cip-_O9YzmruYQ831uQcqPE
-  gapi.client.setApiKey('AIzaSyAlZqy1ElhVN_Hbutey0xNabhZ14bEpcAo');
+  gapi.client.setApiKey('AIzaSyD_mrsCOGa_cip-_O9YzmruYQ831uQcqPE');
   // Set: name of service, version and callback function
-  gapi.client.load('GPhoto', 'v1', getGphotos);
+  gapi.client.load('picturesque', 'v1', getPicturesques);
 }
 
-// return a list of Gphotos
-function getGphotos() {
-  var req = gapi.client.GPhoto.Gphotos.list(); 
+// return a list of Picturesques
+function getPicturesques() {
+  var req = gapi.client.picturesque.photo.list(); 
   req.execute(function(data) {
-    console.log("-- We have " + data.items.length + " Gphotos --");
-    //console.log("Gphotos: " +  JSON.stringify(data));  
+    console.log("-- We have " + data.items.length + " Picturesques --");
+    //console.log("Picturesques: " +  JSON.stringify(data));  
      
-    // var Gphotos = data.items;
+    // var Picturesques = data.items;
     // var i=1;
-    // $.each(Gphotos, function(key, val) {
+    // $.each(Picturesques, function(key, val) {
     //   //var details = JSON.stringify(val);
-      
-    //   console.log(i + ") Saving locally: " + val.id + " Name: "+ val.GphotoName) ;
+    //   console.log(i + ") Saving locally: " + val.id + " Name: "+ val.title) ;
     //   i++;
-    //   //offline - save Gphotos
-    //   GphotoApp.db.saveGphoto(val);
+    //   //offline - save Picturesques
+    //   PicturesqueApp.db.savePicturesque(val);
     // });
 
   });
@@ -54,48 +52,49 @@ function getGphotos() {
 // ================ Google API ================ 
 
 
-// start the party
+//
+// Start the party
 // 
 $(function() {
   // init data/UI
-  GphotoApp.location();
+  PicturesqueApp.location();
   dragImg();
 
   $("a").tooltip();
   $(".alert").hide();
 
   //
-  // Search after (good) Gphotos
+  // Search after (good) Picturesques
   // 
-  $("#searchGphoto").keydown(function(event) {
+  $("#searchPicturesque").keydown(function(event) {
     if (event.which == 13) {
-        var searchTerm = $("#searchGphoto").val(); 
-        $('#results').html(GphotoApp.callingServerHtml);
-        var req = gapi.client.GPhoto.Gphoto.search( {'term' : searchTerm});
+        var searchTerm = $("#searchPicturesque").val(); 
+        $('#results').html(PicturesqueApp.callingServerHtml);
+        var req = gapi.client.picturesque.photo.search( {'term' : searchTerm});
         req.execute(function(searchOutput) {
-          GphotoApp.showList(searchOutput);  
+          PicturesqueApp.showList(searchOutput);  
         });
     }
   });
 
   // set our last item back
-  $("#gGphotoId").val(localStorage.getItem("gGphotoId"));
+  $("#gPicturesqueId").val(localStorage.getItem("gPicturesqueId"));
 
   // save our id for the future
-  $("#gGphotoId").blur(function() {
-    localStorage.setItem("gGphotoId", this.value);
+  $("#gPicturesqueId").blur(function() {
+    localStorage.setItem("gPicturesqueId", this.value);
   });
 
   //
-  // Updating/Adding Gphoto 
+  // Updating/Adding Picturesque 
   //
-  $("#GphotoDetailsModalBut").click(function(data) {
-    console.log("Fetch the Gphoto and show its data in our dialog");	
-    var GphotoId = $("#gGphotoId").val();
+  $("#PicturesqueDetailsModalBut").click(function(data) {
+    console.log("Fetch the Picturesque and show its data in our dialog");	
+    var PicturesqueId = $("#gPicturesqueId").val();
     
-    $('#results').html(GphotoApp.callingServerHtml);
+    $('#results').html(PicturesqueApp.callingServerHtml);
 
-    var req = gapi.client.GPhoto.Gphotos.get( {'id' : GphotoId});
+    var req = gapi.client.picturesque.photo.get( {'id' : PicturesqueId});
     req.execute(function(data) {
       $("#spinner").remove();
       if (data.code >= 400) {
@@ -106,126 +105,106 @@ $(function() {
       }
      
       if (data.id) {
-        $("#GphotoId").val(data.id);  
-        $("#GphotoName").val(data.GphotoName); 
-        $("#GphotoScore").val(data.score);
-        $("#GphotoScoreText").val(data.score);
-        var tmpLocation = "32.06,34.77"; // default is Google office in TLV
-        if (data.latitude && data.longitude) {
-            tmpLocation = data.latitude + "," + data.longitude;
-            $("#GphotoDesc").val(tmpLocation);
-        }
+        $("#PicturesqueId").val(data.id);  
+        $("#title").val(data.title); 
+        //$("#PicturesqueScore").val(data.score);
+        //$("#PicturesqueScoreText").val(data.score);
+        $("#PicturesqueDescription").val(data.description);
         
-        var mapImg = '<img border=0 src="http://maps.googleapis.com/maps/api/staticmap?center=' +
-            tmpLocation + '&zoom=14&size=262x112&maptype=roadmap&markers=color:blue%7Clabel:S%7C' + 
-            tmpLocation + '&sensor=true"/>';
-        $("#localMap").html(mapImg);
-        $("#GphotoTags").val(data.kindOfGphoto);
+        // TODO:
+        $("#PicturesqueTags").val(data.tags);
 
         var imgData64 = null;
         if (data.image !== null && data.image.value !== null) {
-          imgData64 = data.image.value;
+          imgData64 = data.getBase64Image.value;
           imgHtml = "<img src='data:image/png;base64," + imgData64 + "' id='upImg'/>";
           $('#imgdrop').html(imgHtml);
         }
         
-        $('#GphotoDetailsModal').modal('show');
+        $('#PicturesqueDetailsModal').modal('show');
       }
       else {
-        $('#alertContent').html("Could not get Gphoto: " + $("#gGphotoId").val());
+        $('#alertContent').html("Could not get Picturesque: " + $("#gPicturesqueId").val());
         $('.alert').show();
       } 
     });
   });
 	
-  // Get One Gphoto
-  $(".oneGphotoBut").click(function(data) {
-    GphotoApp.cursor = undefined;
-    $('#results').html(GphotoApp.callingServerHtml);
-    var req = gapi.client.GPhoto.Gphotos.get({
-      'id' :  $("#gGphotoId").val()
+  // Get One Picturesque
+  $(".onePicturesqueBut").click(function(data) {
+    PicturesqueApp.cursor = undefined;
+    $('#results').html(PicturesqueApp.callingServerHtml);
+    var req = gapi.client.picturesque.photo.get({
+      'id' :  $("#gPicturesqueId").val()
     });
 
     req.execute(function(data) {
-      GphotoApp.showList(data);  
+      PicturesqueApp.showList(data);  
     });
 
   });
 
-  // Delete Gphoto
-  $("#GphotoDelBut").click(function() {
-    $('#results').html(GphotoApp.callingServerHtml);
-    var req = gapi.client.GPhoto.Gphotos.delete({
-      'id' :  $("#gGphotoId").val()
+  // Delete Picturesque
+  $("#PicturesqueDelBut").click(function() {
+    $('#results').html(PicturesqueApp.callingServerHtml);
+    var req = gapi.client.picturesque.photo.delete({
+      'id' :  $("#gPicturesqueId").val()
     });
 
     req.execute(function(data) {
-      GphotoApp.showList(data);  
+      PicturesqueApp.showList(data);  
     });
   });
 
-  // Add new Gphoto
-  $("#GphotoAddBut").click(function(data) {
-    GphotoApp.clearFields();
-    $("#GphotoDesc").val(GphotoApp.curLocation);
-    $("#GphotoScore").change();
+  // Add new Picturesque
+  $("#PicturesqueAddBut").click(function(data) {
+    PicturesqueApp.clearFields();
+   // $("#PicturesqueDescription").val(PicturesqueApp.curLocation);
+   // $("#PicturesqueScore").change();
 
-    // Using our Geo information to have a small map of the area around us
-    var mapImg = '<img border=0 src="http://maps.googleapis.com/maps/api/staticmap?center=' +
-      GphotoApp.curLocation + '&zoom=14&size=262x112&maptype=roadmap&markers=color:blue%7Clabel:S%7C' + 
-      GphotoApp.curLocation + '&sensor=true"/>';
-    $("#localMap").html(mapImg);
-
-    $('#GphotoDetailsModal').modal('show');
+    $('#PicturesqueDetailsModal').modal('show');
 
   });
 
   // Actions for the modal
-  $("#cancelGphoto").click(function(data) {
-    GphotoApp.clearFields();
-    $('#GphotoDetailsModal').modal('hide');
+  $("#cancelPicturesque").click(function(data) {
+    PicturesqueApp.clearFields();
+    $('#PicturesqueDetailsModal').modal('hide');
   });
 
   //
-  // Save Gphoto - Add new or update
+  // Save Picturesque - Add new or update
   //
-  $("#saveGphoto").click(function() {
-    console.log("Going to save the Gphoto...");
+  $("#savePicturesque").click(function() {
+    console.log("Going to save the Picturesque...");
     var features = {};
 
     // extract all the info from the form's fields
-    $("#GphotoDetailsModal input[id^='Gphoto']").each(function() {      
+    $("#PicturesqueDetailsModal input[id^='Picturesque']").each(function() {      
       features[$(this).attr('name')] = $(this).val();
     });
     delete features['undefined'];
-    var latLong = features['location'].split(",");
-    delete features['location'];
-
-    // Get the select value as well.
-    features[$('#GphotoNumDrinks').attr('name')] = $('#GphotoNumDrinks').val();
+    
+    // Get the select value as well. features[$('#PicturesqueNumDrinks').attr('name')] = $('#PicturesqueNumDrinks').val();
     if ($('#upImg')[0] !== null) { 
-      var tmpImg = $('#upImg')[0]; // keep it one image per Gphoto
-      var GphotoImg64 = getBase64Image(tmpImg);
-      features['image'] =  {"value" : GphotoImg64};
+      var tmpImg = $('#upImg')[0]; // keep it one image per Picturesque
+      var PicturesqueImg64 = getBase64Image(tmpImg);
+      features['base64Photo'] = PicturesqueImg64; // {"value" : PicturesqueImg64};
     } 
     var req;
-    if ( !features['GphotoId']) {
-      // In case we have an empty GphotoId, do not send it, 
-      // so the server will take it as a new Gphoto
-      delete features['GphotoId'];
-      
-      features['latitude'] =  GphotoApp.lang;
-      features['longitude'] = GphotoApp.long;
+    if ( !features['PicturesqueId']) {
+      // In case we have an empty PicturesqueId, do not send it, 
+      // so the server will take it as a new Picturesque
+      delete features['PicturesqueId'];
 
-      req = gapi.client.GPhoto.Gphotos.insert( features );
+      req = gapi.client.picturesque.photo.insert( features );
     }
     else {
-      // It's an update of a Gphoto
-      features['id']        = features['GphotoId'];
-      delete features['GphotoId'];
-      features['latitude']  = latLong[0];
-      features['longitude'] = latLong[1];
-      req = gapi.client.GPhoto.Gphotos.update( features ); 
+      // It's an update of a Picturesque
+      features['id']        = features['PicturesqueId'];
+      delete features['PicturesqueId'];
+
+      req = gapi.client.picturesque.photo.update( features ); 
     }
     
     req.execute(function(data) {
@@ -235,9 +214,9 @@ $(function() {
           tmpHTML = data.error.message;
         }
         else {
-          tmpHTML = '<h4>Your Gphoto is Safe</h4>';
-          tmpHTML += "<img src='img/Gphoto24.jpg'/>"
-          tmpHTML += 'id: ' + data.id + " Name: " + data.GphotoName;
+          tmpHTML = '<h4>Your Picturesque is Safe</h4>';
+          tmpHTML += "<img src='img/Picturesque24.jpg'/>"
+          tmpHTML += 'id: ' + data.id + " Name: " + data.title;
         }
         $('#results').html("");
         $('#alertContent').html(tmpHTML);
@@ -245,36 +224,36 @@ $(function() {
 
     });
 
-    $('#GphotoDetailsModal').modal('hide');
+    $('#PicturesqueDetailsModal').modal('hide');
   });
 
-  $("#GphotoScore").change(function() {
-    $("#GphotoScoreText").val($("#GphotoScore").val());
+  $("#PicturesqueScore").change(function() {
+    $("#PicturesqueScoreText").val($("#PicturesqueScore").val());
   })
 
   //
-  // Show Gphoto(s) in a list format
+  // Show Picturesque(s) in a list format
   //
-  $(".GphotoListBut").live("click", function() {
-    var maxGphotos = $("#listNumGphoto").val();   
-    $('#results').html(GphotoApp.callingServerHtml);
-    var req = gapi.client.GPhoto.Gphotos.list({
-      'limit' : maxGphotos,
-      'cursor': GphotoApp.cursor
+  $(".PicturesqueListBut").live("click", function() {
+    var maxPicturesques = $("#listNumPicturesque").val();   
+    $('#results').html(PicturesqueApp.callingServerHtml);
+    var req = gapi.client.picturesque.photo.list({
+      'limit' : maxPicturesques,
+      'cursor': PicturesqueApp.cursor
     });
 
     req.execute(function(data) {
-      GphotoApp.showList(data);  
+      PicturesqueApp.showList(data);  
     });
 
-  }); // end of Gphoto lists
+  }); // end of Picturesque lists
 
 
   //
-  // save new comments 
+  // Save new comments 
   // oauth example
   //
-  $("#saveCommentsGphoto").click(function() {
+  $("#saveCommentsPicturesque").click(function() {
     var features = {};
 
     var tmpDate = new Date();
@@ -282,15 +261,15 @@ $(function() {
     tmpDate = tmpDate.format("mmm d yyyy h:MTT"); 
 
     features['date'] = tmpDate;
-    features['comment']  = $("#GphotoComment").val();
-    $("#GphotoCommentsModal input[id^='Gphoto']").each(function() {      
+    features['comment']  = $("#PicturesqueComment").val();
+    $("#PicturesqueCommentsModal input[id^='Picturesque']").each(function() {      
       features[$(this).attr('name')] = $(this).val();
     });
 
     //var json = JSON.stringify(features); 
-    $('#results').html(GphotoApp.callingServerHtml);
+    $('#results').html(PicturesqueApp.callingServerHtml);
 
-    var req = gapi.client.GPhoto.Gphotos.comments.insert(features);
+    var req = gapi.client.picturesque.photo.comments.insert(features);
     req.execute(function(data) {
       var tmpHTML;
       $("#spinner").remove();
@@ -299,38 +278,38 @@ $(function() {
         tmpHTML = data.error.message;
       }
       else {
-        tmpHTML = '<h4>Your great comment on Gphoto ' + data.GphotoId + ' is Safe</h4>';
-        tmpHTML += "<img src='img/Gphoto-icon-36.png'/>"
+        tmpHTML = '<h4>Your great comment on Picturesque ' + data.PicturesqueId + ' is Safe</h4>';
+        tmpHTML += "<img src='img/flower26.png'/>"
       }
       $('#results').html("");
       $('#alertContent').html(tmpHTML);
       $('.alert').show(); 
     });  
 
-    $('#GphotoCommentsModal').modal('hide');
+    $('#PicturesqueCommentsModal').modal('hide');
   });  
 
 
-  // Show comments on specific Gphoto
-  // Use - https://Gphotodemo1.googleplex.com/_ah/api/Gphoto/v1/comments?GphotoId=3003'
-  $("#GphotoComments").click(function() {
-    if ($("#gGphotoId").val() == undefined || $("#gGphotoId").val() < 0) {
-      console.error("Comments error - missing GphotoId: " + $("#gGphotoId").val() );
+  // Show comments on specific Picturesque
+  // Use - https://Picturesquedemo1.googleplex.com/_ah/api/Picturesque/v1/comments?PicturesqueId=3003'
+  $("#PicturesqueComments").click(function() {
+    if ($("#gPicturesqueId").val() == undefined || $("#gPicturesqueId").val() < 0) {
+      console.error("Comments error - missing PicturesqueId: " + $("#gPicturesqueId").val() );
       $('<h3/>', {
-        html: "Could not fetch comments for GphotoId: " + $("#gGphotoId").val()
+        html: "Could not fetch comments for PicturesqueId: " + $("#gPicturesqueId").val()
       }).appendTo('#results');
     } 
     else {
       // we are all good (more or less) fetch the comments
-      $('#results').html(GphotoApp.callingServerHtml);
+      $('#results').html(PicturesqueApp.callingServerHtml);
 
-      var req = gapi.client.GPhoto.Gphotos.comments.list({
-        'GphotoId': $("#gGphotoId").val()
+      var req = gapi.client.picturesque.photo.comments.list({
+        'PicturesqueId': $("#gPicturesqueId").val()
       });
 
       req.execute(function(data) {
         $("#spinner").remove();
-        GphotoApp.showComments(data);
+        PicturesqueApp.showComments(data);
       });
     }
   })
@@ -338,14 +317,14 @@ $(function() {
   //
   // comments dialog actions
   //
-  $("#GphotoAddComment").click(function(data) {
-      GphotoApp.clearCommentsFields();
-      GphotoApp.checkAuth();
-      $('#GphotoCommentsModal').modal('show');
+  $("#PicturesqueAddComment").click(function(data) {
+      PicturesqueApp.clearCommentsFields();
+      PicturesqueApp.checkAuth();
+      $('#PicturesqueCommentsModal').modal('show');
     });
 
-  $("#cancelCommentsGphoto").click(function(data) {
-      $('#GphotoCommentsModal').modal('hide');
+  $("#cancelCommentsPicturesque").click(function(data) {
+      $('#PicturesqueCommentsModal').modal('hide');
     });
 
 

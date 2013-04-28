@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>Gphoto I/O Demo 2013 - Unit testing on the client</title>
-    <meta name="description" content="Gphoto IO 2013 Demo">
+    <title>Picturesque I/O Demo 2013 - Unit testing on the client</title>
+    <meta name="description" content="Picturesque IO 2013 Demo">
     <meta name="author" content="Ido Green">
 
     <link rel="stylesheet" href="http://code.jquery.com/qunit/git/qunit.css" type="text/css" media="screen" />
@@ -15,16 +15,16 @@
     <script src="../js/libs/lawnchair-0.6.1.js"></script>
 
     <script>
-      GphotoApp = {}; // only for our unit tests
-      GphotoApp.db = {};
+      PicturesqueApp = {}; // only for our unit tests
+      PicturesqueApp.db = {};
 
-      var mockGphoto = {
-        GphotoId: 5007,
+      var mockPicturesque = {
+        PicturesqueId: 5007,
         numberOfComments: 0,
         name: "VB",
         country: "Australia",
         numberOfDrinks: 42,
-        kindOfGphoto: "Ale",
+        kindOfPicturesque: "Ale",
         score: 4,
         location: "New york, NY",
         description: "Full body and it's nice in the spring time."
@@ -37,35 +37,35 @@
       // TODO: move all this code to: offline.js  
       $(document).ready(function(){
         //
-        module("Module 0 - Get All Gphotos");
-        test("Get ALL Gphotos test", function() {
-          GphotoApp.db.allGphotos();
-          ok( true, "the getting of our Gphoto looks good");
+        module("Module 0 - Get All Picturesques");
+        test("Get ALL Picturesques test", function() {
+          PicturesqueApp.db.allPicturesques();
+          ok( true, "the getting of our Picturesque looks good");
         });
 
         module("Module A - Clean our space");
         test("Start clean and delete ALL", function() {
-          GphotoApp.db.deleteAll();
+          PicturesqueApp.db.deleteAll();
           ok( true, "Check we have nothing in the devTools" );
         });    
 
         //
-        module("Module B - Getting/Setting Gphotos");
-        test("Save Gphoto: " + mockGphoto.GphotoId + " test", function() {
-          GphotoApp.db.saveGphoto(mockGphoto);
-          ok( GphotoApp.tmpSaveId === mockGphoto.GphotoId, "Saving part looks good");
+        module("Module B - Getting/Setting Picturesques");
+        test("Save Picturesque: " + mockpicturesque.photoId + " test", function() {
+          PicturesqueApp.db.savePicturesque(mockPicturesque);
+          ok( PicturesqueApp.tmpSaveId === mockpicturesque.photoId, "Saving part looks good");
         });
 
-        test("Get a Gphoto test", function() {
-          GphotoApp.tmpGetId = "n/a";
-          GphotoApp.db.getGphoto(mockGphoto.GphotoId);
-          ok( GphotoApp.tmpGetId === mockGphoto.GphotoId, "Getting of our Gphoto looks good");
+        test("Get a Picturesque test", function() {
+          PicturesqueApp.tmpGetId = "n/a";
+          PicturesqueApp.db.getPicturesque(mockpicturesque.photoId);
+          ok( PicturesqueApp.tmpGetId === mockpicturesque.photoId, "Getting of our Picturesque looks good");
         });
 
-        test("Save Gphoto: " + mockGphoto.GphotoId + " test", function() {
-          mockGphoto.GphotoId = 6000;
-          GphotoApp.db.saveGphoto(mockGphoto);
-          ok( GphotoApp.tmpSaveId === mockGphoto.GphotoId, "Saving part looks good");
+        test("Save Picturesque: " + mockpicturesque.photoId + " test", function() {
+          mockpicturesque.photoId = 6000;
+          PicturesqueApp.db.savePicturesque(mockPicturesque);
+          ok( PicturesqueApp.tmpSaveId === mockpicturesque.photoId, "Saving part looks good");
         });
 
       });
@@ -73,7 +73,7 @@
 
   </head>
   <body>
-    <h1 id="qunit-header">Gphoto I/O Demo 2013 - Unit testing</h1>
+    <h1 id="qunit-header">Picturesque I/O Demo 2013 - Unit testing</h1>
     <h2 id="qunit-banner"></h2>
     <div id="qunit-testrunner-toolbar"></div>
     <h2 id="qunit-userAgent"></h2>

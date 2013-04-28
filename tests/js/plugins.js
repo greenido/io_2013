@@ -10,7 +10,7 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 // place any jQuery/helper plugins in here, instead of separate, slower script files.
 
 // scope our features/functions 
-var GphotoApp = GphotoApp || {};
+var PicturesqueApp = PicturesqueApp || {};
 
 // Some help to offline capabilities
 $.getScript("js/offline.js", function(){
@@ -20,51 +20,51 @@ $.getScript("js/offline.js", function(){
 //
 // Constants
 //
-GphotoApp.callingServerHtml = '<p id="spinner"><img src="img/loader.gif"/></p>';
+PicturesqueApp.callingServerHtml = '<p id="spinner"><img src="img/loader.gif"/></p>';
 
-// prod: GPhoto.googleplex.com 
+// prod: Picturesque.googleplex.com 
 var proxyServer = "";
-if (document.URL.indexOf("GPhoto") < 0) {
+if (document.URL.indexOf("Picturesque") < 0) {
   // we are in dev mode
   proxyServer = 'curl_proxy.php?url=';
 }
 
 // we will use it for pagination        
-GphotoApp.cursor = undefined;
+PicturesqueApp.cursor = undefined;
 
 // OAuth helper functions
 var clientId = '18031058163.apps.googleusercontent.com';
 var apiKey = 'AIzaSyCAlE-Rnz1Qmj_jvAmUXNM5-SYl8U0JUxk';
 var scopes = 'https://www.googleapis.com/auth/userinfo.email';  
 
-GphotoApp.checkAuth = function() {
-  gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, GphotoApp.handleAuthResult);
+PicturesqueApp.checkAuth = function() {
+  gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, PicturesqueApp.handleAuthResult);
 }
 
-GphotoApp.handleAuthResult = function (authResult) {
+PicturesqueApp.handleAuthResult = function (authResult) {
   var authorizeButton = document.getElementById('authorize-button');
   if (authResult) {
     authorizeButton.style.visibility = 'hidden';
     console.log("You are now logged in");
   } else {
     authorizeButton.style.visibility = '';
-    authorizeButton.onclick = GphotoApp.handleAuthClick;
+    authorizeButton.onclick = PicturesqueApp.handleAuthClick;
   }
 }
 
-GphotoApp.handleAuthClick = function(event) {
-  gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, GphotoApp.handleAuthResult);
+PicturesqueApp.handleAuthClick = function(event) {
+  gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, PicturesqueApp.handleAuthResult);
   return false;
 }
 
-// Get the geo location of our user so we could save it with the Gphotos
-GphotoApp.location = function(){
+// Get the geo location of our user so we could save it with the Picturesques
+PicturesqueApp.location = function(){
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      GphotoApp.curLocation = position.coords.latitude + "," +
+      PicturesqueApp.curLocation = position.coords.latitude + "," +
                             position.coords.longitude;
-      GphotoApp.lang = position.coords.latitude;
-      GphotoApp.long = position.coords.longitude;
+      PicturesqueApp.lang = position.coords.latitude;
+      PicturesqueApp.long = position.coords.longitude;
       console.log ("current position: Lat:  " + 
                   position.coords.latitude + " Long: " + 
                   position.coords.longitude);
@@ -80,77 +80,74 @@ GphotoApp.location = function(){
   }
 }
 
-// clear the values of the Gphoto modal. Useful before enteting a new Gphoto
-GphotoApp.clearFields = function() {
-  $("#GphotoDetailsModal input[id^='Gphoto']").each(function() {      
+// clear the values of the Picturesque modal. Useful before enteting a new Picturesque
+PicturesqueApp.clearFields = function() {
+  $("#PicturesqueDetailsModal input[id^='Picturesque']").each(function() {      
     $(this).val("");
   });
 }
 
-// clear the Gphoto's comment modal.
-GphotoApp.clearCommentsFields = function() {
-  $("#GphotoCommentsModal input[id^='Gphoto']").each(function() {      
+// clear the Picturesque's comment modal.
+PicturesqueApp.clearCommentsFields = function() {
+  $("#PicturesqueCommentsModal input[id^='Picturesque']").each(function() {      
     $(this).val("");
   });
-  $("#GphotoCommentId").val($("#gGphotoId").val());
+  $("#PicturesqueCommentId").val($("#gPicturesqueId").val());
 }
 
-// Show a list of Gphotos on our page
-GphotoApp.showList = function(data) {
+// Show a list of Picturesques on our page
+PicturesqueApp.showList = function(data) {
   $("#spinner").remove();
   if (data.error) {
     $('<h3/>', {
-      html: "Could not find Gphoto: " +$("#gGphotoId").val()
+      html: "Could not find Picturesque: " +$("#gPicturesqueId").val()
     }).appendTo('#results');
     return;
   }
 
   // We check for items because there are cases where we get errors in 'data'
   if (data && data.items) { 
-    var Gphotos = data.items;
+    var Picturesques = data.items;
     var items = [];
     
     // lets save the cursor so we could pagination on the list
     // TODO - change to new name
-    GphotoApp.cursor = data.nextPageToken;
+    PicturesqueApp.cursor = data.nextPageToken;
 
-    // and give user the option to 'share' their best Gphoto
-    $("#shareGphoto").live("click", function() {
-      var GphotoDetails = "Check my Gphoto: " + $("#shareGphoto").data('Gphoto') + "\n\nYou can enjoy rating Gphotos at: https://GPhoto-io2013.appspot.com/";
-      var intent = new Intent(
-            "http://webintents.org/share",
-            "text/uri-list",
-             GphotoDetails);
-      window.navigator.startActivity(intent);
-     });
+    // and give user the option to 'share' their best Picturesque
+    // $("#sharePicturesque").live("click", function() {
+    //   var PicturesqueDetails = "Check my Picturesque: " + $("#sharePicturesque").data('Picturesque') + "\n\nYou can enjoy rating Picturesques at: https://Picturesque-app.appspot.com/";
+    //   var intent = new Intent(
+    //         "http://webintents.org/share",
+    //         "text/uri-list",
+    //          PicturesqueDetails);
+    //   window.navigator.startActivity(intent);
+    //  });
 
-    var firstGphoto = true;
-    $.each(Gphotos, function(key, val) {
-      var details = "<div class='GphotoDetails'>";
+   
+    $.each(Picturesques, function(key, val) {
+      var details = "<div class='PicturesqueDetails'>";
       var shareHtml = "";
-       if (firstGphoto) {
-        shareHtml += "<button id='shareGphoto' data-Gphoto='" + val.GphotoName +
-                " score:" + val.score + "'>Share Gphoto</button>";
-        firstGphoto = false;
-      }
+       
       details += "<pre>";
       var imgData64 = null;
-      if (val['image'] !== null) {
-        imgData64 = val['image']['value'];
+      if (val['base64Photo'] !== null) {
+        imgData64 = val['base64Photo']; //['value'];
       }
       delete val['image'];
       
+      val['base64Photo'] = "check the console";
       var dataStr = JSON.stringify(val, undefined, 2);
       details += syntaxHighlight(dataStr);
       details += "</pre></div>";
-      var imgHtml = "<img src='img/Gphoto-icon-36.png' alt='Gphoto icon'/>";
+      var imgHtml = "<img src='img/flower26.png' alt='Picturesque icon'/>";
       if (imgData64 !== undefined && imgData64 !== null) {
-        imgHtml = "<img src='data:image/png;base64," + imgData64 + "' class='GphotoImgInList' />";
+        imgHtml = "<img src='data:image/png;base64," + imgData64 + "' class='PicturesqueImgInList' />";
       }
       
       if (val !== undefined && val !== null) {
         items.push('<li>' + imgHtml +  '<span class="label label-warning">' + 
-          val.GphotoName + '</span> - Id: ' + 
+          val.title + '</span> - Id: ' + 
           val.id + shareHtml + '<br/>' + 
           details + '</li>');
       }
@@ -158,38 +155,38 @@ GphotoApp.showList = function(data) {
     });
 
     $('<ol/>', {
-      'class': 'GphotoItem',
+      'class': 'PicturesqueItem',
       html: items.join('')
     }).appendTo('#results');
 
     // If we have more results 
-    if (GphotoApp.cursor !== undefined) {
+    if (PicturesqueApp.cursor !== undefined) {
       // lets add pagination
       var pagingHTML = '<ul class="pager"> \
         <li> \
-          <button class="btn btn-large GphotoListBut">More &rarr;</button> \
+          <button class="btn btn-large PicturesqueListBut">More &rarr;</button> \
         </li> \
       </ul>';
       $("#results").append(pagingHTML);
     }
   }
   else if (data && !data.items) {
-    // just one Gphoto so data.items is undefined
-    var details = "<div class='GphotoDetails'><pre>";
+    // just one Picturesque so data.items is undefined
+    var details = "<div class='PicturesqueDetails'><pre>";
     var dataStr = JSON.stringify(data, undefined, 5);
     details += syntaxHighlight(dataStr);
     details += "</pre></div>";
 
-    $('#results').html('<img src="img/88-Gphoto-mug.png"/><span class="label label-warning">' + data.GphotoName + 
+    $('#results').html('<img src="img/88-Picturesque-mug.png"/><span class="label label-warning">' + data.PicturesqueName + 
         '</span> - Id: ' + data.id + '<br/>' + details);
   }
 }
 
 // Show a list of comments on our page
-GphotoApp.showComments = function(data) {
+PicturesqueApp.showComments = function(data) {
   if (data.error) {
     $('<h3/>', {
-      html: "Could not find comments for GphotoId: " +$("#gGphotoId").val() +
+      html: "Could not find comments for PicturesqueId: " +$("#gPicturesqueId").val() +
       " Err:" + data.message
     }).appendTo('#results');
     return;
@@ -200,9 +197,9 @@ GphotoApp.showComments = function(data) {
     var items = [];
     $.each(comments, function(key, val) {
     
-    var details = "<div class='GphotoComm'>";
+    var details = "<div class='PicturesqueComm'>";
     for (var prop in val) {
-      if (prop !== "GphotoId") {
+      if (prop !== "PicturesqueId") {
         if (prop === "date") {
           details += "(" + decodeURIComponent(val[prop]) + ")<br/>";
         }
@@ -213,19 +210,19 @@ GphotoApp.showComments = function(data) {
     }
     details += 'user email: ' + val['user']['email'];
     details += "</div>";
-    items.push('<li><img src="img/Gphoto24.jpg"/><span class="label label-warning">' + 
-      val.GphotoId +  
+    items.push('<li><img src="img/Picturesque24.jpg"/><span class="label label-warning">' + 
+      val.PicturesqueId +  
       '</span><br/>' + details + '</li>');
     });
     $('<ol/>', {
-      'class': 'GphotoItem',
+      'class': 'PicturesqueItem',
       html: items.join('')
     }).appendTo('#results');
   }
   else {
     // got empty obj of comments
     $('<h3/>', {
-      html: "There are no comments for GphotoId: " +$("#gGphotoId").val()
+      html: "There are no comments for PicturesqueId: " +$("#gPicturesqueId").val()
     }).appendTo('#results');
   }
 }
@@ -267,7 +264,7 @@ function dragImg() {
 
 	    var imgElem = document.createElement('img');
 	    imgElem.setAttribute('id', 'upImg');
-	    imgElem.setAttribute('alt', 'Gphoto picture');
+	    imgElem.setAttribute('alt', 'Picturesque picture');
 	    imgElem.setAttribute('src', event.target.result);
 	    imgElem.setAttribute('width', 140);
 	    imgElem.setAttribute('height', 100);

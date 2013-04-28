@@ -7,8 +7,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>GPhoto I/O Demo 2013</title>
-    <meta name="description" content="Gphoto IO 2013 Demo">
+    <title>Picturesque I/O Demo 2013</title>
+    <meta name="description" content="Picturesque IO 2013 Demo">
     <meta name="author" content="Ido Green">
 
     <meta name="viewport" content="width=device-width">
@@ -17,7 +17,7 @@
 
     <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
 
-    <meta itemprop="name" content="Gphoto I/O Demo 2013">
+    <meta itemprop="name" content="Picturesque I/O Demo 2013">
     <meta itemprop="image" content="https://developers.google.com/images/developers-logo.png">
 
   </head>
@@ -32,7 +32,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="#">GPhoto I/O Demo 2013</a>
+        <a class="brand" href="#">Picturesque I/O Demo 2013</a>
         <div class="nav-collapse">
           <ul class="nav">
 
@@ -42,7 +42,7 @@
             <li><a href="tests/unit-tests.html" target="_blank">Offline</a></li>
             <li><a href="tests/oauth-tests.html" target="_blank">OAuth2.0</a></li>
 
-            <li><input id="searchGphoto" data-provide="typeahead" 
+            <li><input id="searchPicturesque" data-provide="typeahead" 
                        type="search" placeholder="Search..."
                        data-items="4" 
                        data-source='["sun", "snow", "beach", "bike", "run", "ride", "walk"]'>
@@ -80,9 +80,9 @@
           <div class="row-fluid">
             <div class="span5">
               <div class="genId">
-                <img src="img/coffee-48.png" alt='Gphoto coffee' id='imgTesT'/>
-                GphotoId
-                <input name="gGphotoId" id="gGphotoId" type="text" required=""/>
+                <img src="img/coffee-48.png" alt='Picturesque coffee' id='imgTesT'/>
+                PicturesqueId
+                <input name="gPicturesqueId" id="gPicturesqueId" type="text" required=""/>
               </div>
 
               <ul class="nav nav-tabs" id="mainTabs">
@@ -95,11 +95,11 @@
               <div class="tab-content">
                 <div class="tab-pane fade in active" id="listActions">
                   <li>
-                    <a class="btn btn-large GphotoListBut" data-maxGphotos="50">List Gphotos</a>
+                    <a class="btn btn-large PicturesqueListBut" data-maxPicturesques="50">List Picturesques</a>
                   </li>
                   <li>
                     List
-                    <select name="listOfDrinks" id="listNumGphoto">
+                    <select name="listOfDrinks" id="listNumPicturesque">
                       <option>1</option>
                       <option>2</option>
                       <option selected="selected">3</option>
@@ -109,31 +109,31 @@
                       <option>50</option>
                       <option>100</option>
                     </select>
-                    <a class="btn btn-large GphotoListBut">Gphotos</a>
+                    <a class="btn btn-large PicturesqueListBut">Picturesques</a>
                   </li>
                   <li>
-                    <a class="btn btn-large oneGphotoBut" data-oneGphoto="1">Get A Gphoto</a>
+                    <a class="btn btn-large onePicturesqueBut" data-onePicturesque="1">Get A Picturesque</a>
                   </li>
                 </div>
 
                 <div class="tab-pane fade in" id="crudActions">
                   <li>
-                    <a id="GphotoDetailsModalBut" class="btn btn-large">Update Gphoto</a>
+                    <a id="PicturesqueDetailsModalBut" class="btn btn-large">Update Picturesque</a>
                   </li>
                   <li>
-                    <a id="GphotoAddBut" class="btn btn-large">Add a Gphoto</a>
+                    <a id="PicturesqueAddBut" class="btn btn-large">Add a Picturesque</a>
                   </li>
                    <li>
-                    <a id="GphotoDelBut" class="btn btn-large">Delete a Gphoto</a>
+                    <a id="PicturesqueDelBut" class="btn btn-large">Delete a Picturesque</a>
                   </li>
                 </div>
 
                 <div class="tab-pane fade" id="commentsActions">
                   <li>
-                    <a id="GphotoComments" class="btn btn-large">Get Comments</a>
+                    <a id="PicturesqueComments" class="btn btn-large">Get Comments</a>
                   </li>
                   <li>
-                    <a id="GphotoAddComment" class="btn btn-large">Add a Comment</a>  
+                    <a id="PicturesqueAddComment" class="btn btn-large">Add a Comment</a>  
                     <button id="authorize-button" class="btn" 
                             title="You must be logged in in order to add comments">Sign In</button> 
                   </li>
@@ -157,31 +157,32 @@
       </div>
     </div>
 
-    <!-- update/add Gphoto(s) -->
-    <div class="modal hide" id="GphotoDetailsModal" >
+    <!-- update/add Picturesque(s) -->
+    <div class="modal hide" id="PicturesqueDetailsModal" >
       <div class="modal-header">
         <button class="close" data-dismiss="modal">×</button>
-        <h3>Gphoto Details</h3>
+        <h3>Picturesque Details</h3>
       </div>
       <div class="modal-body">
 
-        <form id='GphotoForm'>
-         <!-- <label for="GphotoId">Id</label>
-          <input name="GphotoId" id="GphotoId" type="text" disabled>
+        <form id='PicturesqueForm'>
+         <!-- <label for="PicturesqueId">Id</label>
+          <input name="PicturesqueId" id="PicturesqueId" type="text" disabled>
           -->
-          <label for="GphotoName">Name</label>
-          <input name="GphotoName" id="GphotoName" type="text" required="">
+          <label for="PicturesqueTitle">Name</label>
+          <input name="title" id="PicturesqueTitle" type="text" required="">
 
-          <label for="GphotoScore">Score</label>
+          <!--
+          <label for="PicturesqueScore">Score</label>
           <input type="range" min="0" max="5" value="2" name="score"
-                 id="GphotoScore">
-          <input type="text" id="GphotoScoreText" disabled>                   
-
-          <label for="GphotoDesc">Description</label>
-          <input name="description" id="GphotoDesc" type="text">
+                 id="PicturesqueScore">
+          <input type="text" id="PicturesqueScoreText" disabled>                   
+          -->
+          <label for="PicturesqueDescription">Description</label>
+          <input name="description" id="PicturesqueDescription" type="text">
           
-          <label for="GphotoTags">Tags</label>
-          <input name="GphotoTags" id="GphotoTags" type="text">
+          <label for="PicturesqueTags">Tags</label>
+          <input name="tags" id="PicturesqueTags" type="text">
 
           <div id="imgdrop">Drop Image</div> 
         </form>
@@ -190,34 +191,34 @@
       <br/> 
 
       <div class="modal-footer">
-        <a href="#" id="cancelGphoto" class="btn">Cancel</a>
-        <a href="#" id="saveGphoto" class="btn btn-primary">Save</a>
+        <a href="#" id="cancelPicturesque" class="btn">Cancel</a>
+        <a href="#" id="savePicturesque" class="btn btn-primary">Save</a>
       </div>
     </div>
 
     <!-- comments details -->
-    <div class="modal hide" id="GphotoCommentsModal" >
+    <div class="modal hide" id="PicturesqueCommentsModal" >
       <div class="modal-header">
         <button class="close" data-dismiss="modal">×</button>
-        <h3>Gphoto Comments</h3>
+        <h3>Picturesque Comments</h3>
       </div>
       <div class="modal-body">
-        <form id='GphotoCommentsForm'>
-          <label for="GphotoId">Id</label>
-          <input name="GphotoId" id="GphotoCommentId" type="text" disabled>
+        <form id='PicturesqueCommentsForm'>
+          <label for="PicturesqueId">Id</label>
+          <input name="PicturesqueId" id="PicturesqueCommentId" type="text" disabled>
 
-          <label for="GphotoUserName">Your Name</label>
-          <input name="name" id="GphotoUserName" type="text" required="">
-          <label for="GphotoComment">Comment</label>
-          <textarea id ="GphotoComment" placeholder="" cols="30" rows="5"></textarea>
+          <label for="PicturesqueUserName">Your Name</label>
+          <input name="name" id="PicturesqueUserName" type="text" required="">
+          <label for="PicturesqueComment">Comment</label>
+          <textarea id ="PicturesqueComment" placeholder="" cols="30" rows="5"></textarea>
         </form>
 
       </div>
       <br/> 
 
       <div class="modal-footer">
-        <a href="#" id="cancelCommentsGphoto" class="btn">Cancel</a>
-        <a href="#" id="saveCommentsGphoto" class="btn btn-primary">Save</a>
+        <a href="#" id="cancelCommentsPicturesque" class="btn">Cancel</a>
+        <a href="#" id="saveCommentsPicturesque" class="btn btn-primary">Save</a>
       </div>
     </div>
 
@@ -229,9 +230,9 @@
         <ul class="nav nav-list">
           <li>
             <!-- TODO put the correct URI -->
-            <a href="https://developers.google.com/apis-explorer/?base=https://GPhoto-io2013.appspot.com/_ah/api#p/GPhoto/v1/">
+            <a href="https://developers.google.com/apis-explorer/?base=https://picturesque-app.appspot.com/_ah/api#p/picturesque/v1/">
               <i class="icon-search"></i>
-              GPhoto API in Google APIs Explorer
+              Picturesque API in Google APIs Explorer
             </a>
           </li>
           <li>
@@ -287,13 +288,13 @@
   <script src="js/plugins.js"></script>
   <script src="js/scripts-gapi.js"></script>
 
-  <!-- Google JS API GPhoto-io2013 -->
+  <!-- Google JS API Picturesque-app -->
 
 <!-- TODO - change to the correct URI -->  
   <script src="https://apis.google.com/js/client.js?onload=loadGapi">
     { "client": {},
       "googleapis.config": {
-        root: "https://GPhoto-io2013.appspot.com/_ah/api"
+        root: "https://picturesque-app.appspot.com/_ah/api"
       }
     }
   </script>

@@ -8,7 +8,7 @@ body {
   padding-bottom: 40px;
 }
 
-.GphotoItem {
+.PicturesqueItem {
   background-color: white;
   padding-left: 2em;
   padding-right: 2em;
@@ -17,7 +17,7 @@ body {
 }
 
 
-#GphotoScoreText {
+#PicturesqueScoreText {
   background-color: lightyellow;
   width: 25px;
   text-align: center;
@@ -27,7 +27,7 @@ body {
   padding-top: 15px;
 }
 
-#gGphotoId {
+#gPicturesqueId {
   width: 45px;
   height: 25px;
   margin-top: 10px;
@@ -37,13 +37,13 @@ body {
  display: none; 
 }
 
-.GphotoDetails {
+.PicturesqueDetails {
   padding: 6px;
   background: white;
   border-radius: 20px;
 }
 
-#searchGphoto {
+#searchPicturesque {
   margin-top: 5px;
 }
 
@@ -61,7 +61,7 @@ body {
    word-wrap: break-word;      /* IE */
 }
 
-#listNumGphoto {
+#listNumPicturesque {
   width: 4em;
   position: relative;
   top: 3px;
@@ -72,7 +72,7 @@ body {
   left: 10px;
   top: 8px;
 }
-#shareGphoto {
+#sharePicturesque {
   position: relative;
   left: 1em;
   bottom: 2px;
@@ -108,7 +108,7 @@ body {
   border: 8px dashed #333; 
  }
 
- .GphotoImgInList {
+ .PicturesqueImgInList {
   
   height: 50px;
   padding-right: 10px;

@@ -4,8 +4,8 @@ Amir<!DOCTYPE HTML>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>Gphoto I/O Demo 2013 - OAuth Example</title>
-    <meta name="description" content="Gphoto IO 2013 Demo">
+    <title>Picturesque I/O Demo 2013 - OAuth Example</title>
+    <meta name="description" content="Picturesque IO 2013 Demo">
     <meta name="author" content="Ido Green">
     <meta name="viewport" content="width=device-width">
 
@@ -28,7 +28,7 @@ Amir<!DOCTYPE HTML>
 
       function loadGapi() {
         // Set: name of service, version and callback function
-        gapi.client.load('GPhoto', 'v1', handleClientLoad);
+        gapi.client.load('Picturesque', 'v1', handleClientLoad);
       }
 
       function insertDemoComment() {
@@ -38,14 +38,14 @@ Amir<!DOCTYPE HTML>
         // Using format: Jun 1 2005 1:33PM
         tmpDate = tmpDate.format("mmm d yyyy h:MTT"); 
 
-        features['GphotoId'] = "2001";
+        features['PicturesqueId'] = "2001";
         features['date'] = tmpDate;
-        features['comment']  = "Demo comment on a wonderful Gphoto";
-        features['user'] = { 'email' : 'Gphoto-2@example.com' };
+        features['comment']  = "Demo comment on a wonderful Picturesque";
+        features['user'] = { 'email' : 'Picturesque-2@example.com' };
         var json = JSON.stringify(features); 
         console.log("comment data: "+ json);
 
-        var req = gapi.client.GPhoto.Gphotos.comments.insert(features);
+        var req = gapi.client.picturesque.photo.comments.insert(features);
         req.execute(function(data) {
           console.log("We got back after adding a comment that: " + JSON.stringify(data));
           if (data.commentId !== undefined) {
@@ -104,7 +104,7 @@ Amir<!DOCTYPE HTML>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">GPhoto I/O Demo 2013 - OAuth2.0 Example</a>
+          <a class="brand" href="#">Picturesque I/O Demo 2013 - OAuth2.0 Example</a>
           <div class="nav-collapse">
 
           </div><!--/.nav-collapse -->
@@ -121,11 +121,11 @@ Amir<!DOCTYPE HTML>
               <li><button class="btn btn-large" id="authorize-button">Please Authorize Me</button> <br/>
                 This is the button that we will use in order to gain access to the Google API.</p>
               </li>
-              <li><button  class="btn btn-large" id="insertComment">Insert a demo Gphoto comment</button> <br/>
+              <li><button  class="btn btn-large" id="insertComment">Insert a demo Picturesque comment</button> <br/>
               If you don't see the 'Please' button - try and click this one in order to insert a comment</li>
             </ul>
 
-            <img src="../img/Gphoto1.jpg" alt='cold Gphoto'/>
+            <img src="../img/Picturesque1.jpg" alt='cold Picturesque'/>
           </p>
         </div>
 
@@ -187,7 +187,7 @@ function handleAuthClick(event) {
   <script src="https://apis.google.com/js/client.js?onload=loadGapi">
     { "client": {},
       "googleapis.config": {
-        root: "https://GPhoto-io2013.appspot.com/_ah/api"
+        root: "https://Picturesque-app.appspot.com/_ah/api"
       }
     }
   </script>

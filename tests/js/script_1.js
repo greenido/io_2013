@@ -1,31 +1,31 @@
 
 function showList(data) {
   if (data && data.items) { 
-    var Gphotos = data.items;
+    var Picturesques = data.items;
     var items = [];
-    $.each(Gphotos, function(key, val) {
-      var details = "<div class='GphotoDetails'><pre>";
+    $.each(Picturesques, function(key, val) {
+      var details = "<div class='PicturesqueDetails'><pre>";
       for (var prop in val) {
-          if (prop === "GphotoId") {
-            details += "GphotoId: " + val[prop.id] + "<br/>";
+          if (prop === "PicturesqueId") {
+            details += "PicturesqueId: " + val[prop.id] + "<br/>";
           }
           else {              
             details += prop + ": " + val[prop] + "<br/>";
           }
       }
       details += "</pre></div>";
-      items.push('<li><img src="img/b3_40.png"/><span class="label label-warning">' + val.GphotoName + 
+      items.push('<li><img src="img/b3_40.png"/><span class="label label-warning">' + val.PicturesqueName + 
         '</span> - Id: ' + val.id + '<br/>' + details + '</li>');
     });
 
     $('<ol/>', {
-      'class': 'GphotoItem',
+      'class': 'PicturesqueItem',
       html: items.join('')
     }).appendTo('#results');
   }
 }
 
-var apiUrl = "https://GPhoto-io2013.appspot.com/_ah/api/GPhoto/v1/Gphoto";
+var apiUrl = "https://Picturesque-app.appspot.com/_ah/api/Picturesque/v1/Picturesque";
 $.ajax({
   url: apiUrl,
   dataType: 'json',
@@ -36,9 +36,9 @@ $.ajax({
     showList(data);
   },
   error: function(xhr, ajaxOptions, thrownError) {
-    console.error("Gphoto list error: " + xhr.status) + " err: " + thrownError;
+    console.error("Picturesque list error: " + xhr.status) + " err: " + thrownError;
     $('<h3/>', {
-        html: "Could not find Gphotos"
+        html: "Could not find Picturesques"
       }).appendTo('#results');
   }
  

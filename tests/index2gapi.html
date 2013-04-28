@@ -7,8 +7,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>GPhoto I/O Demo 2013 - gapi (2)</title>
-  <meta name="description" content="GPhoto Demo I/O 2013">
+  <title>Picturesque I/O Demo 2013 - gapi (2)</title>
+  <meta name="description" content="Picturesque Demo I/O 2013">
   <meta name="author" content="Ido Green">
 
   <meta name="viewport" content="width=device-width">
@@ -35,7 +35,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="http://code.google.com/p/google-api-javascript-client/" target="_blank">GPhoto I/O Demo 2013 (Google API JS Library)</a>
+        <a class="brand" href="http://code.google.com/p/google-api-javascript-client/" target="_blank">Picturesque I/O Demo 2013 (Google API JS Library)</a>
         <div class="nav-collapse">
           <ul class="nav">
 
@@ -61,7 +61,7 @@
 &lt;script src="https://apis.google.com/js/client.js?onload=loadGapi"&gt;
     { "client": {},
       "googleapis.config": {
-        root: "https://GPhoto-io2013.appspot.com/_ah/api"
+        root: "https://Picturesque-app.appspot.com/_ah/api"
       }
     }
 &lt;/script&gt;
@@ -70,17 +70,17 @@ function loadGapi() {
   // Set the API key
   gapi.client.setApiKey('AIzaSyD_mrsCOGa_cip-_O9YzmruYQ831uQcqPE');
   // Set: name of service, version and callback function
-  gapi.client.load('GPhoto', 'v1', getGphotos);
+  gapi.client.load('Picturesque', 'v1', getPicturesques);
 }
 
-function getGphotos() {
-   var req = gapi.client.GPhoto.listGphoto();
+function getPicturesques() {
+   var req = gapi.client.Picturesque.listPicturesque();
    req.execute(function(data) {
     showList(data); 
   });
 }
         </code></pre>
-        <img src="img/Gphoto1.jpg" alt='cold Gphoto'/>
+        <img src="img/Picturesque1.jpg" alt='cold Picturesque'/>
         </p>
          <h2>Take Aways</h2>
           <ul>
@@ -114,12 +114,12 @@ function getGphotos() {
   <script src="js/offline.js"></script>
 
   <!-- Google JS API 
-  Gphotodemo1 GPhoto
+  Picturesquedemo1 Picturesque
 -->
   <script src="https://apis.google.com/js/client.js?onload=loadGapi">
     { "client": {},
       "googleapis.config": {
-        root: "https://GPhoto-io2013.appspot.com/_ah/api"
+        root: "https://Picturesque-app.appspot.com/_ah/api"
       }
     }
   </script>

@@ -1,9 +1,9 @@
-curl -H  'content-type:application/json'  -d '{"GphotoId": "1003" }'  https://Gphotodemo1.googleplex.com /_ah/api/Gphoto/v1/Gphotos
+curl -H  'content-type:application/json'  -d '{"PicturesqueId": "1003" }'  https://Picturesquedemo1.googleplex.com /_ah/api/Picturesque/v1/Picturesques
 
-curl -H  'content-type:application/json'  -d '{"GphotoId": "1003" }'  https://Gphotodemo1.googleplex.com/_ah/api/Gphoto/v1/Gphotos
+curl -H  'content-type:application/json'  -d '{"PicturesqueId": "1003" }'  https://Picturesquedemo1.googleplex.com/_ah/api/Picturesque/v1/Picturesques
 
 
-curl 'https://Gphotodemo1.googleplex.com/_ah/api/Gphoto/v1/Gphotos?limit=1'
+curl 'https://Picturesquedemo1.googleplex.com/_ah/api/Picturesque/v1/Picturesques?limit=1'
 {
  "cursor": "E-ABAIICKWoWc35nb29nbGUuY29tOmJlZXJkZW1vMXIPCxIJQmVlclN0b3JlGAMMFA==",
  "items": [
@@ -11,7 +11,7 @@ curl 'https://Gphotodemo1.googleplex.com/_ah/api/Gphoto/v1/Gphotos?limit=1'
    "numberOfComments": 0,
    "name": "Bud light",
    "numberOfDrinks": 3,
-   "kindOfGphoto": "Ale",
+   "kindOfPicturesque": "Ale",
    "score": 3,
    "location": "San Jose",
    "id": 3
@@ -20,8 +20,8 @@ curl 'https://Gphotodemo1.googleplex.com/_ah/api/Gphoto/v1/Gphotos?limit=1'
  "etag": "\"XM_v48Ac6D5RyQ2r4sG6FoX38H0/W6k8nbDP-T9StSHXQg5D9u2ieE8\""
 }
 
-echo "paging of Gphotos.. "
-curl 'https://Gphotodemo1.googleplex.com/_ah/api/Gphoto/v1/Gphotos?cursor=E-ABAIICKWoWc35nb29nbGUuY29tOmJlZXJkZW1vMXIPCxIJQmVlclN0b3JlGAMMFA==&limit=1'
+echo "paging of Picturesques.. "
+curl 'https://Picturesquedemo1.googleplex.com/_ah/api/Picturesque/v1/Picturesques?cursor=E-ABAIICKWoWc35nb29nbGUuY29tOmJlZXJkZW1vMXIPCxIJQmVlclN0b3JlGAMMFA==&limit=1'
 
 
 ====
@@ -33,19 +33,19 @@ curl 'https://Gphotodemo1.googleplex.com/_ah/api/Gphoto/v1/Gphotos?cursor=E-ABAI
 
 
 request_json = {
-        path: '_ah/api/Gphoto/v1/Gphotos',
+        path: '_ah/api/Picturesque/v1/Picturesques',
         method: "POST",
         params: "",
-        body: '{"GphotoId":"' + $("#GphotoId").val() + '"}'
+        body: '{"PicturesqueId":"' + $("#PicturesqueId").val() + '"}'
       };
-gapi.config.update('googleapis.config/root', 'https://Gphotodemo1.googleplex.com/');
+gapi.config.update('googleapis.config/root', 'https://Picturesquedemo1.googleplex.com/');
 
 request = gapi.client.request(request_json);
 request.execute(function(data) {
         
         $("#spinner").remove();
         if (data) { 
-          var Gphotos = data.contents.items;  
+          var Picturesques = data.contents.items;  
           var items = [];
           }
 });  

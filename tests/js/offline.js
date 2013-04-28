@@ -1,48 +1,48 @@
 // scope our features/functions 
 
-GphotoApp.db = new Lawnchair( {name:'GphotoApp.db'}, function(e){
-	console.log('Lawnchair (and Gphotos) are open');
+PicturesqueApp.db = new Lawnchair( {name:'PicturesqueApp.db'}, function(e){
+	console.log('Lawnchair (and Picturesques) are open');
 });
 
-// saving Gphotos per their ID
-GphotoApp.db.saveGphoto = function(Gphoto) {
-	var GphotoStr = JSON.stringify(Gphoto);
-	var GphotoId  = Gphoto.GphotoId;
-	if (Gphoto.hasOwnProperty("id")) {
-		GphotoId = Gphoto.id;
+// saving Picturesques per their ID
+PicturesqueApp.db.savePicturesque = function(Picturesque) {
+	var PicturesqueStr = JSON.stringify(Picturesque);
+	var PicturesqueId  = picturesque.photoId;
+	if (Picturesque.hasOwnProperty("id")) {
+		PicturesqueId = Picturesque.id;
 	}
 	
-	GphotoApp.db.save( { key: GphotoId, value: GphotoStr } , function(tmpData) {
-		var GphotoInfo = $.parseJSON(tmpData.value);
-		GphotoApp.tmpSaveId = GphotoInfo.GphotoId;
+	PicturesqueApp.db.save( { key: PicturesqueId, value: PicturesqueStr } , function(tmpData) {
+		var PicturesqueInfo = $.parseJSON(tmpData.value);
+		PicturesqueApp.tmpSaveId = PicturesqueInfo.PicturesqueId;
 	});
 }
 
-// Get all Gphotos
-GphotoApp.db.allGphotos = function() {
-	console.log("==== Get All the Gphotos from our local data ====");	
-	var items = GphotoApp.db.all(function(arr) {
+// Get all Picturesques
+PicturesqueApp.db.allPicturesques = function() {
+	console.log("==== Get All the Picturesques from our local data ====");	
+	var items = PicturesqueApp.db.all(function(arr) {
 	  arr.forEach( function(entry) {
-	    console.log("GphotoId: " + entry.key + " value:" + entry.value);
+	    console.log("PicturesqueId: " + entry.key + " value:" + entry.value);
 	  });
 	});
 }
 
-// find specific Gphoto
-GphotoApp.db.getGphoto = function(GphotoId) {
-    GphotoApp.db.get(GphotoId, function(tmp) {
+// find specific Picturesque
+PicturesqueApp.db.getPicturesque = function(PicturesqueId) {
+    PicturesqueApp.db.get(PicturesqueId, function(tmp) {
     	if (tmp !== undefined && tmp !== null) {
-        	console.log('We got back Gphoto.Id: ' + tmp.key + " with these properties: "+ tmp.value);
-        	GphotoApp.tmpGetId = tmp.key;
+        	console.log('We got back Picturesque.Id: ' + tmp.key + " with these properties: "+ tmp.value);
+        	PicturesqueApp.tmpGetId = tmp.key;
     	}
     	else {
-    		console.warn('Opss... Could not find locally GphotoId');
+    		console.warn('Opss... Could not find locally PicturesqueId');
     	}
     });
 }
 
 // remove everything to keep a clean yard
-GphotoApp.db.deleteAll = function() {
-    GphotoApp.db.nuke();
+PicturesqueApp.db.deleteAll = function() {
+    PicturesqueApp.db.nuke();
     console.log ("* we clean all our local data");
 }
