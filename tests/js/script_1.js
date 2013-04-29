@@ -1,4 +1,4 @@
-
+// Show the list of items
 function showList(data) {
   if (data && data.items) { 
     var Picturesques = data.items;
@@ -8,6 +8,9 @@ function showList(data) {
       for (var prop in val) {
           if (prop === "PicturesqueId") {
             details += "PicturesqueId: " + val[prop.id] + "<br/>";
+          }
+          else if (prop === "base64Photo") {
+            details += "base64Photo: Check the console <br/>";
           }
           else {              
             details += prop + ": " + val[prop] + "<br/>";

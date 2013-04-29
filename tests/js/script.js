@@ -20,9 +20,9 @@ var PicturesqueApp = {};
 //
 PicturesqueApp.callingServerHtml = '<p id="spinner"><img src="img/loader.gif"/></p>';
 
-// prod: Picturesquedemo1.googleplex.com 
+// prod: Picturesque-app.googleplex.com 
 var proxyServer = "";
-if (document.URL.indexOf("Picturesquedemo1") < 0) {
+if (document.URL.indexOf("Picturesque-app") < 0) {
   // we are in dev mode - let's use our little proxy
   proxyServer = 'curl_proxy.php?url=';
 }
@@ -31,13 +31,13 @@ if (document.URL.indexOf("Picturesquedemo1") < 0) {
 // Entry points to the API
 //
 PicturesqueApp.serverUrl = proxyServer + 
-        'https://Picturesquedemo1.googleplex.com/_ah/api/Picturesque/v1/Picturesque';
+        'https://Picturesque-app.googleplex.com/_ah/api/Picturesque/v1/Picturesque';
 PicturesqueApp.searchUrl = proxyServer + 
-        'https://Picturesquedemo1.googleplex.com/_ah/api/Picturesque/v1/search'; 
+        'https://Picturesque-app.googleplex.com/_ah/api/Picturesque/v1/search'; 
 PicturesqueApp.commentsUrl = proxyServer + 
-        'https://Picturesquedemo1.googleplex.com/_ah/api/Picturesque/v1/comments'
+        'https://Picturesque-app.googleplex.com/_ah/api/Picturesque/v1/comments'
 PicturesqueApp.commentManUrl = proxyServer + 
-        'https://Picturesquedemo1.googleplex.com/_ah/api/Picturesque/v1/comment'
+        'https://Picturesque-app.googleplex.com/_ah/api/Picturesque/v1/comment'
 PicturesqueApp.cursor = undefined;
 
 PicturesqueApp.location = function(){
@@ -132,7 +132,7 @@ PicturesqueApp.showList = function(data) {
 // TODO:
 // ================ Google API ================ 
 // API Explorer:
-// https://code.google.com/apis/explorer/?base=https://Picturesquedemo1.googleplex.com/_ah/api#_s=Picturesque&_v=v1
+// https://code.google.com/apis/explorer/?base=https://Picturesque-app.googleplex.com/_ah/api#_s=Picturesque&_v=v1
 
 // Load our service
 function loadGapi() {
@@ -165,7 +165,7 @@ $(function() {
   // Our search after (good) Picturesques
   // 
   // TODO: show the power of: https://code.google.com/apis/explorer/?
-  // base=https://Picturesquedemo1.googleplex.com/_ah/api#_s=Picturesque&_v=v1&_m=Picturesques.search
+  // base=https://Picturesque-app.googleplex.com/_ah/api#_s=Picturesque&_v=v1&_m=Picturesques.search
   // &query=numberOfDrinks%20%3E%2010%20AND%20%20score%20%3E%201
   //
   $("#searchPicturesque").keydown(function(event) {
@@ -436,7 +436,7 @@ $(function() {
 
 
   // Show comments on specific Picturesque
-  // Use - https://Picturesquedemo1.googleplex.com/_ah/api/Picturesque/v1/comments?PicturesqueId=3003'
+  // Use - https://Picturesque-app.googleplex.com/_ah/api/Picturesque/v1/comments?PicturesqueId=3003'
   $("#PicturesqueComments").click(function() {
     if ($("#gPicturesqueId").val() == undefined || $("#gPicturesqueId").val() < 0) {
       console.error("Comments error - missing PicturesqueId: " + $("#gPicturesqueId").val() );

@@ -13,7 +13,7 @@ function loadGapi() {
   // Set the API key
   gapi.client.setApiKey('AIzaSyD_mrsCOGa_cip-_O9YzmruYQ831uQcqPE');
   // Set: name of service, version and callback function Picturesquedemo1 Picturesque
-  gapi.client.load('Picturesque', 'v1', getPicturesques);
+  gapi.client.load('picturesque', 'v1', getPicturesques);
 }
 
 // return a list of Picturesques
@@ -39,12 +39,15 @@ function showList(data) {
           if (prop === "PicturesqueId") {
             details += "PicturesqueId: " + val[prop.id] + "<br/>";
           }
+          else if (prop === "base64Photo") {
+            details += "base64Photo: Check the console <br/>";
+          }
           else {              
             details += prop + ": " + val[prop] + "<br/>";
           }
       }
       details += "</pre></div>"; 
-      items.push('<li><img src="http://db.tt/naae4baA"/><span class="label label-warning">' + val.title + 
+      items.push('<li><img src="img/coffee-48.png"/><span class="label label-warning">' + val.title + 
         '</span> - Id: ' + val.id + '<br/>' + details + '</li>');
     });
 
