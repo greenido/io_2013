@@ -17,7 +17,7 @@ function showList(data) {
           }
       }
       details += "</pre></div>";
-      items.push('<li><img src="img/b3_40.png"/><span class="label label-warning">' + val.PicturesqueName + 
+      items.push('<li><img src="img/flower26.png" style="padding-right: 1em;"/><span class="label label-warning">' + val.title + 
         '</span> - Id: ' + val.id + '<br/>' + details + '</li>');
     });
 
@@ -28,7 +28,7 @@ function showList(data) {
   }
 }
 
-var apiUrl = "https://picturesque-app.appspot.com/_ah/api/picturesque/v1/picturesque";
+var apiUrl = "https://picturesque-app.appspot.com/_ah/api/picturesque/v1/photos";
 $.ajax({
   url: apiUrl,
   dataType: 'json',

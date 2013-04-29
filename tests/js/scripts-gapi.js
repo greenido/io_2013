@@ -5,16 +5,15 @@ Author: Ido Green
 Date: May 2013
 
 Key features:
-1. LawnChair - add config for app and save all Picturesques in indexedDB.
-2. Geo - maps for the location.
-3. WebIntent - Sharing.
-
+* GCE - The 4 CRUD operations.
+* OAuth2.0 out of the box.
+* Working with binary data.
+* LawnChair - add config for app and save all Picturesques in indexedDB.
 * Oauth - https://code.google.com/p/google-api-javascript-client/wiki/Samples
 * http://code.google.com/p/google-api-javascript-client/
 
 Yep: simplicity is the ultimate sophistication
 https://developers.google.com/apis-explorer/?base=https://picturesque-app.appspot.com/_ah/api#p/picturesque/v1/
-
 
 */
 
@@ -23,8 +22,6 @@ https://developers.google.com/apis-explorer/?base=https://picturesque-app.appspo
 //
 // Load our service
 function loadGapi() {
-  // Set the API key  AIzaSyAlZqy1ElhVN_Hbutey0xNabhZ14bEpcAo
-  // Ido - AIzaSyD_mrsCOGa_cip-_O9YzmruYQ831uQcqPE
   gapi.client.setApiKey('AIzaSyD_mrsCOGa_cip-_O9YzmruYQ831uQcqPE');
   // Set: name of service, version and callback function
   gapi.client.load('picturesque', 'v1', getPicturesques);
