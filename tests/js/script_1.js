@@ -25,7 +25,7 @@ function showList(data) {
   }
 }
 
-var apiUrl = "https://Picturesque-app.appspot.com/_ah/api/Picturesque/v1/Picturesque";
+var apiUrl = "https://picturesque-app.appspot.com/_ah/api/picturesque/v1/picturesque";
 $.ajax({
   url: apiUrl,
   dataType: 'json',

@@ -74,13 +74,13 @@ function loadGapi() {
 }
 
 function getPicturesques() {
-   var req = gapi.client.Picturesque.listPicturesque();
+   var req = gapi.client.picturesque.photo.list();
    req.execute(function(data) {
     showList(data); 
   });
 }
         </code></pre>
-        <img src="img/Picturesque1.jpg" alt='cold Picturesque'/>
+        <img src="img/Picturesque1.png" alt='cold Picturesque'/>
         </p>
          <h2>Take Aways</h2>
           <ul>

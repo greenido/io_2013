@@ -43,8 +43,8 @@ function showList(data) {
             details += prop + ": " + val[prop] + "<br/>";
           }
       }
-      details += "</pre></div>";
-      items.push('<li><img src="http://db.tt/naae4baA"/><span class="label label-warning">' + val.PicturesqueName + 
+      details += "</pre></div>"; 
+      items.push('<li><img src="http://db.tt/naae4baA"/><span class="label label-warning">' + val.title + 
         '</span> - Id: ' + val.id + '<br/>' + details + '</li>');
     });
 
