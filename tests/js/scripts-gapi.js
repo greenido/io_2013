@@ -67,7 +67,7 @@ $(function() {
     if (event.which == 13) {
         var searchTerm = $("#searchPicturesque").val(); 
         $('#results').html(PicturesqueApp.callingServerHtml);
-        var req = gapi.client.picturesque.photo.search( {'term' : searchTerm});
+        var req = gapi.client.picturesque.photo.list( {'title' : searchTerm});
         req.execute(function(searchOutput) {
           PicturesqueApp.showList(searchOutput);  
         });
