@@ -114,13 +114,15 @@ $(function() {
         // TODO:
         $("#PicturesqueTags").val(data.tags);
 
-        var imgData64 = null;
-        if (data.image !== null && data.image.value !== null) {
-          imgData64 = data.getBase64Image.value;
-          imgHtml = "<img src='data:image/png;base64," + imgData64 + "' id='upImg'/>";
+     
+        if (data.base64Photo !== null ) {
+          imgHtml = "<img src='data:image/png;base64," + data.base64Photo + "' id='upImg'/>";
           $('#imgdrop').html(imgHtml);
         }
-        
+        else {
+          console.log ("Need to check why we don't have a photo with this item... not so good!");
+        }
+  
         $('#PicturesqueDetailsModal').modal('show');
       }
       else {

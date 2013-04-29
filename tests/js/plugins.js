@@ -113,17 +113,6 @@ PicturesqueApp.showList = function(data) {
     // lets save the cursor so we could pagination on the list
     // TODO - change to new name
     PicturesqueApp.cursor = data.nextPageToken;
-
-    // and give user the option to 'share' their best Picturesque
-    // $("#sharePicturesque").live("click", function() {
-    //   var PicturesqueDetails = "Check my Picturesque: " + $("#sharePicturesque").data('Picturesque') + "\n\nYou can enjoy rating Picturesques at: https://Picturesque-app.appspot.com/";
-    //   var intent = new Intent(
-    //         "http://webintents.org/share",
-    //         "text/uri-list",
-    //          PicturesqueDetails);
-    //   window.navigator.startActivity(intent);
-    //  });
-
    
     $.each(Picturesques, function(key, val) {
       var details = "<div class='PicturesqueDetails'>";
@@ -136,7 +125,7 @@ PicturesqueApp.showList = function(data) {
       }
       delete val['image'];
       
-      val['base64Photo'] = "check the console";
+      val['base64Photo'] = "Check the console";
       var dataStr = JSON.stringify(val, undefined, 2);
       details += syntaxHighlight(dataStr);
       details += "</pre></div>";
@@ -173,11 +162,17 @@ PicturesqueApp.showList = function(data) {
   else if (data && !data.items) {
     // just one Picturesque so data.items is undefined
     var details = "<div class='PicturesqueDetails'><pre>";
+    console.log("data.base64Photo: "+ data['base64Photo']);
+    var imgData64 = data['base64Photo'];
+    data['base64Photo'] = "Check the console";
+    data['result']['base64Photo'] = "Check the console";
     var dataStr = JSON.stringify(data, undefined, 5);
     details += syntaxHighlight(dataStr);
     details += "</pre></div>";
+    //img/88-Picturesque-mug.png
 
-    $('#results').html('<img src="img/88-Picturesque-mug.png"/><span class="label label-warning">' + data.PicturesqueName + 
+    $('#results').html('<img src="data:image/png;base64,' + imgData64 + '" style="padding-right:1em"/><span class="label label-warning">' + 
+      data.title + 
         '</span> - Id: ' + data.id + '<br/>' + details);
   }
 }
