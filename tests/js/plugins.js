@@ -168,11 +168,14 @@ PicturesqueApp.showList = function(data) {
     var dataStr = JSON.stringify(data, undefined, 5);
     details += syntaxHighlight(dataStr);
     details += "</pre></div>";
-    //img/88-Picturesque-mug.png
+    
+    var imgHtml = "<img src='img/flower26.png' alt='Picturesque icon'/>";
+    if (imgData64 !== undefined && imgData64 !== null) {
+      imgHtml = "<img src='data:image/png;base64," + imgData64 ;
+    }
 
-    $('#results').html('<img src="data:image/png;base64,' + imgData64 + 
-      '" style="padding-right:1em"/><span class="label label-warning">' + 
-      data.title +  '</span> - Id: ' + data.id + '<br/>' + details);
+    $('#results').html(imgHtml + "' style='padding-right:1em'/> <span class='label label-warning'>" + 
+        data.title +  "</span> - Id: " + data.id + "<br/>" + details);
   }
 
   //

@@ -103,14 +103,9 @@ $(function() {
      
       if (data.id) {
         $("#PicturesqueId").val(data.id);  
-        $("#title").val(data.title); 
-        //$("#PicturesqueScore").val(data.score);
-        //$("#PicturesqueScoreText").val(data.score);
+        $("#PicturesqueTitle").val(data.title); 
         $("#PicturesqueDescription").val(data.description);
-        
-        // TODO:
         $("#PicturesqueTags").val(data.tags);
-
      
         if (data.base64Photo !== null ) {
           imgHtml = "<img src='data:image/png;base64," + data.base64Photo + "' id='upImg'/>";
