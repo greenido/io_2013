@@ -81,7 +81,7 @@ $(function() {
   $("#gPicturesqueId").blur(function() {
     localStorage.setItem("gPicturesqueId", this.value);
   });
-
+  
   //
   // Updating/Adding Picturesque 
   //

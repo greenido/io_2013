@@ -94,12 +94,12 @@ body {
 
 #imgdrop { 
   border: 5px dashed #ccc; 
-  width: 140px; 
-  height: 100px; 
+  width: 240px;
+  height: 200px;
   margin: 8px auto;
   position: relative;
   left: 7.5em;
-  bottom: 9em;
+  bottom: 18.5em;
   text-align: center;
   padding-top: 2em;
  }
@@ -114,3 +114,6 @@ body {
   padding-right: 10px;
  }
 
+#PicturesquePhotoFullSize {
+  width: 260px;
+}

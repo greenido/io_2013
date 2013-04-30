@@ -4,9 +4,8 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 
 // make it safe to use console.log always
 (function(a){function b(){}for(var c="assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,time,timeEnd,trace,warn".split(","),d;!!(d=c.pop());){a[d]=a[d]||b;}})
+
 (function(){try{console.log();return window.console;}catch(a){return (window.console={});}}());
-
-
 // place any jQuery/helper plugins in here, instead of separate, slower script files.
 
 // scope our features/functions 
@@ -171,10 +170,20 @@ PicturesqueApp.showList = function(data) {
     details += "</pre></div>";
     //img/88-Picturesque-mug.png
 
-    $('#results').html('<img src="data:image/png;base64,' + imgData64 + '" style="padding-right:1em"/><span class="label label-warning">' + 
-      data.title + 
-        '</span> - Id: ' + data.id + '<br/>' + details);
+    $('#results').html('<img src="data:image/png;base64,' + imgData64 + 
+      '" style="padding-right:1em"/><span class="label label-warning">' + 
+      data.title +  '</span> - Id: ' + data.id + '<br/>' + details);
   }
+
+  //
+  // Showing the photo in a model dialog
+  //
+  $(".PicturesqueImgInList").click(function(curImg) {
+    console.log("show the full image in a dialog. This:" + curImg.srcElement.outerHTML); 
+    $("#photoFullView").html('<img src="' + this.src + '" style="width: 240px"/>');
+    $('#PicturesquePhotoFullSize').modal('show');
+  });
+
 }
 
 // Show a list of comments on our page
@@ -261,8 +270,8 @@ function dragImg() {
 	    imgElem.setAttribute('id', 'upImg');
 	    imgElem.setAttribute('alt', 'Picturesque picture');
 	    imgElem.setAttribute('src', event.target.result);
-	    imgElem.setAttribute('width', 140);
-	    imgElem.setAttribute('height', 100);
+	    imgElem.setAttribute('width', 240);
+	    imgElem.setAttribute('height', 200);
 	    dropZone.appendChild(imgElem);
 	    
 	  };
