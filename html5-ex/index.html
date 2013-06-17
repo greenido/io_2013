@@ -25,11 +25,14 @@
         <link rel="stylesheet" href="css/style.css">
 
         <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+        <!-- "...calling all the angles..." -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
 
-        <meta itemprop="name" content="DevCon TLV - June 2013">
-        <meta itemprop="image" content="https://developers.google.com/images/developers-logo.png">
+      <meta itemprop="name" content="DevCon TLV - June 2013">
+      <meta itemprop="image" content="https://developers.google.com/images/developers-logo.png">
 
-        <style> 
+      <style> 
         @media screen and (min-width: 1000px) {
           video {
             height: 540px;
@@ -38,101 +41,114 @@
         </style>
 </head>
 <body>
-        <!--[if lt IE 7]>
-        <p class=chromeframe>
-          Your browser is <em>ancient!</em>
-          <a href="http://browsehappy.com/">Upgrade to a different browser</a>
-          or
-          <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a>
-          to experience this site.
-        </p>
-        <![endif]-->
+      <!--[if lt IE 7]>
+      <p class=chromeframe>
+        Your browser is <em>ancient!</em>
+        <a href="http://browsehappy.com/">Upgrade to a different browser</a>
+        or
+        <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a>
+        to experience this site.
+      </p>
+      <![endif]-->
 
-        <div class="navbar navbar-fixed-top">
-          <div class="navbar-inner">
-            <div class="container">
-              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </a>
-              <a class="brand" href="#">DevCon TLV - June 2013</a>
-              <div class="nav-collapse">
-                <ul class="nav">
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">DevCon TLV - June 2013</a>
+            <div class="nav-collapse">
+              <ul class="nav">
 
-                  <li>
-                    <a href="#apis">APIs</a>
-                  </li>
-                  <li>
-                    <a href="http://caniuse.com" target="_blank">CanIUse</a>
-                  </li>
+                <li>
+                  <a href="#apis">APIs</a>
+                </li>
+                <li>
+                  <a href="http://caniuse.com" target="_blank">CanIUse</a>
+                </li>
 
-                  <li>
-                    <input id="searchPicturesque" data-provide="typeahead" 
-                       type="search" placeholder="Search..."
+                <li>
+                  <input id="searchHTML5" data-provide="typeahead" 
+                       type="search" placeholder="border-radius, WebGL, woff, etc"
                        data-items="4" 
-                       data-source='["sun", "snow", "beach", "bike", "run", "ride", "walk"]'></li>
+                       data-source='["canvas", "border-radius", "webgl", "bike", "localstorage", "webworker", "webrtc"]'>
+                       <script>
+                        $("#searchHTML5").keydown(function(event) {
+                          if (event.which == 13) {
+                            var searchTerm = encodeURIComponent($("#searchHTML5").val());
+                            window.open("http://caniuse.com/#search="+searchTerm, '_blank');
+                            
+                          }
+                        });
+                       </script>
+                </li>
 
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      Resources <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="https://developers.google.com/appengine/" target="_blank">Google App Engine</a>
-                      </li>
-                      <li>
-                        <a href="https://developers.google.com/apis-explorer/" target="_blank">Google API explorer</a>
-                      </li>
-                      <li class="divider"></li>
-                      <li>
-                        <a href="http://angularjs.org/" target="_blank">AngularJS</a>
-                      </li>
-                      <li>
-                        <a href="http://documentcloud.github.com/underscore/" target="_blank">Underscore.js</a>
-                      </li>
-                      <li>
-                        <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
-                      </li>
-                      <li class="divider"></li>
-                      <li class="nav-header">Code & Docs</li>
-                      <li>
-                        <a href="https://github.com/greenido" target="_blank">GitHub Repository</a>
-                      </li>
-                      <li>
-                        <a href="http://ido-green.appspot.com" target="_blank">Docs and explanations</a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <!--/.nav-collapse --> </div>
-          </div>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Resources <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="https://developers.google.com/appengine/" target="_blank">Google App Engine</a>
+                    </li>
+                    <li>
+                      <a href="https://developers.google.com/apis-explorer/" target="_blank">Google API explorer</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                      <a href="http://angularjs.org/" target="_blank">AngularJS</a>
+                    </li>
+                    <li>
+                      <a href="http://documentcloud.github.com/underscore/" target="_blank">Underscore.js</a>
+                    </li>
+                    <li>
+                      <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="nav-header">Code & Docs</li>
+                    <li>
+                      <a href="https://github.com/greenido" target="_blank">GitHub Repository</a>
+                    </li>
+                    <li>
+                      <a href="http://ido-green.appspot.com" target="_blank">Docs and explanations</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <!--/.nav-collapse --> </div>
         </div>
+      </div>
 
-        <div class="container">
-          <!-- Main unit -->
-          <div class="hero-unit">
-            <div class="row-fluid">
-              <div class="span11">
+      <div class="container">
+        <!-- Main unit -->
+        <div class="hero-unit">
+          <div class="row-fluid">
+            <div class="span11">
 
-                <ul class="nav nav-tabs" id="mainTabs">
-                  <li class="active">
-                    <a href="#devori" data-toggle="tab">Device Orientation</a>
-                  </li>
-                  <li>
-                    <a href="#geo" data-toggle="tab">Geo</a>
-                  </li>
-                  <li>
-                    <a href="#summary" data-toggle="tab">Summary</a>
-                  </li>
-                   <li>
-                    <a href="#webrtc" data-toggle="tab">WebRTC</a>
-                  </li>
-                  <li>
-                    <a href="#visbility" data-toggle="tab">Visbility</a>
-                  </li>
-                
+              <ul class="nav nav-tabs" id="mainTabs">
+
+                <li class="active">
+                  <a href="#localstorage" data-toggle="tab">Local Storage</a>
+                </li>
+                <li>
+                  <a href="#geo" data-toggle="tab">Geo</a>
+                </li>
+                <li>
+                  <a href="#summary" data-toggle="tab">Summary</a>
+                </li>
+                <li>
+                  <a href="#webrtc" data-toggle="tab">WebRTC</a>
+                </li>
+                <li>
+                  <a href="#visbility" data-toggle="tab">Visbility</a>
+                </li>
+                <li >
+                  <a href="#devori" data-toggle="tab">Device Orientation</a>
+                </li>
               </ul>
 
               <div class="tab-content">
@@ -167,9 +183,7 @@ if (window.DeviceOrientationEvent) {
 
                 <div class="tab-pane fade in" id="geo">
                   <h4>Our location</h4>
-                  <div id="geoData">
-
-                  </div>
+                  <div id="geoData"></div>
                   <pre>
                     <code>
 if (navigator.geolocation) {
@@ -196,11 +210,24 @@ else {
                               lon = position.coords.longitude;
                           var tmpStr = 'Geo: ('+ lat +', '+ lon + ')';
                           console.log(tmpStr);
-                          log (tmpStr);
+                           log (tmpStr);
+                          var geoPoint = lat + "," + lon;
+                          var reqUrl = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + geoPoint + "&sensor=false&callback=stam";
+                            $.getJSON(reqUrl, function(results) {
+                              var address = results.results[0].formatted_address;
+                              log ("address: " + address);
+
+                              $.each(results.results, function(key, val) {
+                                console.log ("==" + key + ": " + val.formatted_address);
+                              });
+
+                            });
+
+
                       });
                   }
                   else {
-                      console.log('Geolocation is not supported for this Browser/OS version yet.');
+                      console.log('Geo location is not supported for this Browser/OS version yet.');
                   }
             
                   </script>
@@ -260,29 +287,112 @@ function errorCallback(error){
 navigator.getUserMedia(constraints, successCallback, errorCallback);
 
                   </script>
-                
                 </div>
 
-
                 <div class="tab-pane fade" id="visbility">
-                  <h4>Visability</h4>
+                  <h4>Visibility</h4>
+                  <div id="visdata"></div>
                   <pre>
                     <code>
- document.addEventListener('visibilitychange', function(e) {
+ document.addEventListener(visibilityChange, function(e) {
     console.log('hidden:' + document.hidden,
               'state:' + document.visibilityState)
 }, false);                      
                     </code>
                   </pre>
+
+                  <a href="http://www.html5rocks.com/en/tutorials/pagevisibility/intro/">Visibility Tutorial on HTML5Rock</a>
                   <script>
-                    document.addEventListener('visibilitychange', function(e) {
-                      var tmpStr = 'hidden:' + document.hidden + ' state:' + document.visibilityState;
-                      console.log(tmpStr); 
-                      log(tmpStr);
-                    }, false);
+                  var visibilityChange, visibilityState; 
+                  if (typeof document.visibilityState !== "undefined") {
+                    visibilityChange = "visibilitychange";
+                    visibilityState = "hidden";
+                  } else if (typeof document.mozHidden !== "undefined") {
+                    visibilityChange = "mozvisibilitychange";
+                    visibilityState = "mozVisibilityState";
+                  } else if (typeof document.msHidden !== "undefined") {
+                    visibilityChange = "msvisibilitychange";
+                    visibilityState = "msVisibilityState";
+                  } else if (typeof document.webkitHidden !== "undefined") {
+                    visibilityChange = "webkitvisibilitychange";
+                    visibilityState = "webkitVisibilityState";
+                  }
+
+                  var visdata = document.getElementById("visdata");
+
+                  visdata.innerHTML += new Date().toTimeString() + ": <em>" + document.title + "</em> is " + document[visibilityState] + "<br />";
+
+                  document.addEventListener(visibilityChange, function(){
+                    visdata.innerHTML += new Date().toTimeString() + ": <em>" + document.title + "</em> is " + document[visibilityState] + "<br />";
+                  });
+                  window.addEventListener("focus", function(){
+                    visdata.innerHTML += new Date().toTimeString() + ": Focus event for <em>" + document.title + "</em><br />";
+                  });
+                  window.addEventListener("blur", function(){
+                    visdata.innerHTML += new Date().toTimeString() + ": Blur event for <em>" + document.title + "</em><br />";
+                  });
+                   
                   </script>
-                
+
                 </div>
+
+                <div class="tab-pane fade" id="localstorage">
+                  <div class="span5">
+                    <h4>Local Storage</h4>
+                    <fieldset>
+                      <legend>Store</legend>
+                      <div>
+                        <label for="storeKey">Key:</label>
+                        <input id="storeKey" type="text" value = "שלום" />
+                      </div>
+                      <div>
+                        <label for="storeValue">Value:</label>
+                        <input id="storeValue" type="text" value = "וברכה" />
+                      </div>
+                      <button id="storeButton">Store</button>
+                    </fieldset>
+
+                    <fieldset>
+                      <legend>Retrieve</legend>
+                      <div>
+                        <label for="retrieveKey">Key:</label>
+                        <input id="retrieveKey" type="text" value = "שלום" />
+                      </div>
+                      <div>
+                        <label for="value">Value:</label>
+                        <input id="retrieveValue" type="text" />
+                      </div>
+                      <button id="retrieveButton">Retrieve</button>
+                    </fieldset>
+                  </div>
+                  <div class="span4">
+                    <pre>
+                      <code>
+// Set                        
+localStorage.setItem(key, value); 
+
+// Get
+var value = window.localStorage[key];
+                      </code>
+                    </pre>
+                  </div>
+
+                  <script>
+                   document.getElementById("storeButton").addEventListener("click", function () {
+                    var key = document.getElementById("storeKey").value;
+                    var value = document.getElementById("storeValue").value;
+                    localStorage.setItem(key, value); // === localStorage[key] = value;
+                  }, false);
+
+                  document.getElementById("retrieveButton").addEventListener("click", function () {
+                    var key = document.getElementById("retrieveKey").value;
+                    var value = window.localStorage[key];
+                    document.getElementById("retrieveValue").value = value;
+                  }, false);
+                  </script>
+
+                </div>
+
               </div>
             </div>
           </div>
@@ -291,25 +401,21 @@ navigator.getUserMedia(constraints, successCallback, errorCallback);
       </div>
       <!-- /container -->
 
-      <!-- "...calling all the angles..." -->
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-      <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+      <!-- some bootstrap goodies -->
+      <script src="js/libs/bootstrap/bootstrap.min.js"></script>
+      <script src="js/libs/bootstrap/modal.js"></script>
+      <script src="js/libs/bootstrap/transition.js"></script>
+      <script src="js/libs/bootstrap/tooltip.js"></script>
+      <script src="js/libs/bootstrap/alert.js"></script>
+      <script src="js/libs/bootstrap/typeahead.js"></script>
+      <script src="js/libs/bootstrap/tab.js"></script>
 
-    <!-- some bootstrap goodies -->
-    <script src="js/libs/bootstrap/bootstrap.min.js"></script>
-    <script src="js/libs/bootstrap/modal.js"></script>
-    <script src="js/libs/bootstrap/transition.js"></script>
-    <script src="js/libs/bootstrap/tooltip.js"></script>
-    <script src="js/libs/bootstrap/alert.js"></script>
-    <script src="js/libs/bootstrap/typeahead.js"></script>
-    <script src="js/libs/bootstrap/tab.js"></script>
+      <!-- our little code -->
 
-    <!-- our little code -->
+      <!-- Google JS API -->
 
-    <!-- Google JS API -->
-
-    <!-- analytics -->
-    <script>
+      <!-- analytics -->
+      <script>
     (function() {
       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
       po.src = 'https://apis.google.com/js/plusone.js';
@@ -327,4 +433,4 @@ navigator.getUserMedia(constraints, successCallback, errorCallback);
   </script>
 
 </body>
-  </html>
+    </html>
