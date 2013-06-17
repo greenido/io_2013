@@ -1,0 +1,330 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en">
+  <![endif]-->
+  <!--[if IE 7]>
+  <html class="no-js lt-ie9 lt-ie8" lang="en">
+    <![endif]-->
+    <!--[if IE 8]>
+    <html class="no-js lt-ie9" lang="en">
+      <![endif]-->
+      <!--[if gt IE 8]>
+      <!-->
+      <html class="no-js" lang="en">
+        <!--<![endif]-->
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>DevCon TLV - June 2013</title>
+        <meta name="description" content="DevCon TLV - June 2013">
+        <meta name="author" content="Ido Green">
+
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/style.css">
+
+        <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+
+        <meta itemprop="name" content="DevCon TLV - June 2013">
+        <meta itemprop="image" content="https://developers.google.com/images/developers-logo.png">
+
+        <style> 
+        @media screen and (min-width: 1000px) {
+          video {
+            height: 540px;
+          }
+        }
+        </style>
+</head>
+<body>
+        <!--[if lt IE 7]>
+        <p class=chromeframe>
+          Your browser is <em>ancient!</em>
+          <a href="http://browsehappy.com/">Upgrade to a different browser</a>
+          or
+          <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a>
+          to experience this site.
+        </p>
+        <![endif]-->
+
+        <div class="navbar navbar-fixed-top">
+          <div class="navbar-inner">
+            <div class="container">
+              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </a>
+              <a class="brand" href="#">DevCon TLV - June 2013</a>
+              <div class="nav-collapse">
+                <ul class="nav">
+
+                  <li>
+                    <a href="#apis">APIs</a>
+                  </li>
+                  <li>
+                    <a href="http://caniuse.com" target="_blank">CanIUse</a>
+                  </li>
+
+                  <li>
+                    <input id="searchPicturesque" data-provide="typeahead" 
+                       type="search" placeholder="Search..."
+                       data-items="4" 
+                       data-source='["sun", "snow", "beach", "bike", "run", "ride", "walk"]'></li>
+
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      Resources <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="https://developers.google.com/appengine/" target="_blank">Google App Engine</a>
+                      </li>
+                      <li>
+                        <a href="https://developers.google.com/apis-explorer/" target="_blank">Google API explorer</a>
+                      </li>
+                      <li class="divider"></li>
+                      <li>
+                        <a href="http://angularjs.org/" target="_blank">AngularJS</a>
+                      </li>
+                      <li>
+                        <a href="http://documentcloud.github.com/underscore/" target="_blank">Underscore.js</a>
+                      </li>
+                      <li>
+                        <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+                      </li>
+                      <li class="divider"></li>
+                      <li class="nav-header">Code & Docs</li>
+                      <li>
+                        <a href="https://github.com/greenido" target="_blank">GitHub Repository</a>
+                      </li>
+                      <li>
+                        <a href="http://ido-green.appspot.com" target="_blank">Docs and explanations</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <!--/.nav-collapse --> </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <!-- Main unit -->
+          <div class="hero-unit">
+            <div class="row-fluid">
+              <div class="span11">
+
+                <ul class="nav nav-tabs" id="mainTabs">
+                  <li class="active">
+                    <a href="#devori" data-toggle="tab">Device Orientation</a>
+                  </li>
+                  <li>
+                    <a href="#geo" data-toggle="tab">Geo</a>
+                  </li>
+                  <li>
+                    <a href="#summary" data-toggle="tab">Summary</a>
+                  </li>
+                   <li>
+                    <a href="#webrtc" data-toggle="tab">WebRTC</a>
+                  </li>
+                  <li>
+                    <a href="#visbility" data-toggle="tab">Visbility</a>
+                  </li>
+                
+              </ul>
+
+              <div class="tab-content">
+                <div class="tab-pane fade in active" id="devori">
+                  <pre>
+                    <code>
+if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', function(event) {
+        var a = event.alpha,
+            b = event.beta,
+            g = event.gamma;
+        console.log('Orientation - Alpha: ' + a + ', Beta: '+ b + ', Gamma: ' + g);
+    }, false);
+} else {
+    console.log('This device does not support deviceorientation');
+}                     
+                    </code>
+                  </pre>
+                  <script>
+                if (window.DeviceOrientationEvent) {
+                  window.addEventListener('deviceorientation', function(event) {
+                      var a = event.alpha,
+                          b = event.beta,
+                          g = event.gamma;
+                      console.log('Orientation - Alpha: ' + a + ', Beta: '+ b + ', Gamma: ' + g);
+                  }, false);
+              } else {
+                  console.log('This device does not support deviceorientation');
+              }
+                  </script>
+                </div>
+
+                <div class="tab-pane fade in" id="geo">
+                  <h4>Our location</h4>
+                  <div id="geoData">
+
+                  </div>
+                  <pre>
+                    <code>
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var lat = position.coords.latitude,
+            lon = position.coords.longitude;
+        console.log('We are at: ('+ lat +', '+ lon + ')' );
+    });
+}
+else {
+    console.log('Geolocation is not supported');
+}
+                    </code>
+                  </pre>
+                  <script>
+                  
+                  var data = document.querySelector('#geoData');
+                  function log(message){
+                    data.innerHTML += message + "<br />" + data.innerHTML;
+                  }
+                  if (navigator.geolocation) {
+                      navigator.geolocation.getCurrentPosition(function(position) {
+                          var lat = position.coords.latitude,
+                              lon = position.coords.longitude;
+                          var tmpStr = 'Geo: ('+ lat +', '+ lon + ')';
+                          console.log(tmpStr);
+                          log (tmpStr);
+                      });
+                  }
+                  else {
+                      console.log('Geolocation is not supported for this Browser/OS version yet.');
+                  }
+            
+                  </script>
+                </div>
+
+                <div class="tab-pane fade" id="summary">
+                  <details open>
+                    <summary>Summary</summary>
+                    <p>
+                      If your browser supports the details element, it should allow
+                    you to expand and collapse this text by clicking the triangle.
+                    </p>
+                  </details>
+                </div>
+
+                <div class="tab-pane fade" id="webrtc">
+                  <h4>WebRTC</h4>
+                  <video autoplay></video>
+
+                  <pre>
+                    <code>
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+var constraints = {video: true};
+
+function successCallback(localMediaStream) {
+  window.stream = localMediaStream; // stream available to console
+  var video = document.querySelector("video");
+  video.src = window.URL.createObjectURL(localMediaStream);
+  video.play();
+}
+
+function errorCallback(error){
+  console.log("navigator.getUserMedia error: ", error);
+}
+
+navigator.getUserMedia(constraints, successCallback, errorCallback);
+                    
+                    </code>
+                  </pre>
+                  <script>
+                 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+var constraints = {video: true};
+
+function successCallback(localMediaStream) {
+  window.stream = localMediaStream; // stream available to console
+  var video = document.querySelector("video");
+  video.src = window.URL.createObjectURL(localMediaStream);
+  video.play();
+}
+
+function errorCallback(error){
+  console.log("navigator.getUserMedia error: ", error);
+}
+
+navigator.getUserMedia(constraints, successCallback, errorCallback);
+
+                  </script>
+                
+                </div>
+
+
+                <div class="tab-pane fade" id="visbility">
+                  <h4>Visability</h4>
+                  <pre>
+                    <code>
+ document.addEventListener('visibilitychange', function(e) {
+    console.log('hidden:' + document.hidden,
+              'state:' + document.visibilityState)
+}, false);                      
+                    </code>
+                  </pre>
+                  <script>
+                    document.addEventListener('visibilitychange', function(e) {
+                      var tmpStr = 'hidden:' + document.hidden + ' state:' + document.visibilityState;
+                      console.log(tmpStr); 
+                      log(tmpStr);
+                    }, false);
+                  </script>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /container -->
+
+      <!-- "...calling all the angles..." -->
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+
+    <!-- some bootstrap goodies -->
+    <script src="js/libs/bootstrap/bootstrap.min.js"></script>
+    <script src="js/libs/bootstrap/modal.js"></script>
+    <script src="js/libs/bootstrap/transition.js"></script>
+    <script src="js/libs/bootstrap/tooltip.js"></script>
+    <script src="js/libs/bootstrap/alert.js"></script>
+    <script src="js/libs/bootstrap/typeahead.js"></script>
+    <script src="js/libs/bootstrap/tab.js"></script>
+
+    <!-- our little code -->
+
+    <!-- Google JS API -->
+
+    <!-- analytics -->
+    <script>
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+
+    // var _gaq = _gaq || [];
+    // _gaq.push(['_setAccount', 'UA-31753022-1']);
+    // _gaq.push(['_trackPageview']);
+    // (function() {
+    //   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    //   ga.src = ('https:' == document.description.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    //   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    // })();
+  </script>
+
+</body>
+  </html>
